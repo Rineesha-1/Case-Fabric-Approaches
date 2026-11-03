@@ -1,0 +1,247 @@
+<humanTask xmlns="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:cafienne="org.cafienne">
+    <cafienne:implementation name="ApprovePlan" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
+        <documentation textFormat="text/plain">
+            <text><![CDATA[Approve plan. Owner: Manager. ]]></text>
+        </documentation>
+        <input id="i_Employee__approve_plan" name="Employee" typeRef="dv_employee.type"/>
+        <input id="i_Plan__approve_plan" name="Plan" typeRef="dv_plan.type"/>
+        <output id="o_Approval__approve_plan" name="Approval" typeRef="dv_approval.type"/>
+        <output id="Budget__lePV" name="Budget" typeRef="dv_budget.type"/>
+        <task-model>{
+  "schema": {
+    "title": "Approve plan",
+    "description": "Approve the plan, or reject it with comments to send it back to the employee.",
+    "type": "object",
+    "required": [
+      "Approval"
+    ],
+    "properties": {
+          "Budget": {
+  "type": "object",
+  "title": "Training budget",
+  "properties": {
+    "amount": { "type": "number", "title": "Amount" }
+  }
+},
+
+      "Employee": {
+        "type": "object",
+        "title": "Employee",
+        "properties": {
+          "employeeId": {
+            "type": "string",
+            "title": "Employee number"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "jobTitle": {
+            "type": "string",
+            "title": "Job title"
+          },
+          "managerId": {
+            "type": "string",
+            "title": "Manager number"
+          },
+          "managerName": {
+            "type": "string",
+            "title": "Manager"
+          },
+          "trigger": {
+            "type": "string",
+            "title": "Reason for the plan",
+            "enum": [
+              "ANNUAL_REVIEW",
+              "NEW_ROLE",
+              "CAREER_GROWTH",
+              "PERFORMANCE_IMPROVEMENT",
+              "ONBOARDING"
+            ],
+            "enumNames": [
+              "Annual review",
+              "New role",
+              "Career growth",
+              "Performance improvement",
+              "Onboarding"
+            ]
+          }
+        }
+      },
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "title": "Goal",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "enum": [
+                    "SKILL",
+                    "KNOWLEDGE",
+                    "BEHAVIOUR",
+                    "CAREER"
+                  ],
+                  "enumNames": [
+                    "Skill",
+                    "Knowledge",
+                    "Behaviour",
+                    "Career"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "title",
+                "type",
+                "successCriteria",
+                "targetDate"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "period",
+          "goals"
+        ]
+      },
+      "Approval": {
+        "type": "object",
+        "title": "Manager's decision",
+        "properties": {
+          "decision": {
+            "type": "string",
+            "title": "Decision",
+            "enum": [
+              "APPROVED",
+              "REJECTED"
+            ],
+            "enumNames": [
+              "Approved",
+              "Rejected"
+            ]
+          },
+          "comments": {
+            "type": "string",
+            "title": "Comments"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "if": {
+          "properties": {
+            "decision": {
+              "const": "REJECTED"
+            }
+          },
+          "required": [
+            "decision"
+          ]
+        },
+        "then": {
+          "required": [
+            "comments"
+          ]
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "Employee": {
+      "ui:order": [
+        "employeeId",
+        "name",
+        "jobTitle",
+        "managerId",
+        "managerName",
+        "trigger"
+      ],
+      "ui:readonly": true
+    },
+    "Plan": {
+      "ui:order": [
+        "period",
+        "goals"
+      ],
+      "goals": {
+        "items": {
+          "ui:order": [
+            "title",
+            "type",
+            "description",
+            "successCriteria",
+            "targetDate"
+          ],
+          "description": {
+            "ui:widget": "textarea",
+            "ui:options": {
+              "rows": 3
+            }
+          },
+          "successCriteria": {
+            "ui:widget": "textarea",
+            "ui:options": {
+              "rows": 3
+            }
+          }
+        },
+        "ui:options": {
+          "addable": false,
+          "removable": false,
+          "orderable": false
+        },
+        "ui:readonly": true
+      },
+      "ui:readonly": true
+    },
+    "Approval": {
+      "ui:order": [
+        "decision",
+        "comments"
+      ],
+      "comments": {
+        "ui:widget": "textarea",
+        "ui:options": {
+          "rows": 3
+        }
+      }
+    },
+    "ui:order": [
+      "Employee",
+      "Plan",
+      "Approval",
+          "Budget"
+    ]
+  },
+  "submitLabel": "Save decision"
+}</task-model>
+    </cafienne:implementation>
+</humanTask>

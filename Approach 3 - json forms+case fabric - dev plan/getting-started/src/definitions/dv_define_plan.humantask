@@ -1,0 +1,186 @@
+<humanTask xmlns="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:cafienne="org.cafienne">
+    <cafienne:implementation name="DefinePlan" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
+        <documentation textFormat="text/plain">
+            <text><![CDATA[Define goals & plan. Owner: Employee. Starts from the previous plan, if any. The manager may also fill it in (delegation).]]></text>
+        </documentation>
+        <input id="i_Employee__define_plan" name="Employee" typeRef="dv_employee.type"/>
+        <input id="i_Plan__define_plan" name="Plan" typeRef="dv_plan.type"/>
+        <output id="o_Plan__define_plan" name="Plan" typeRef="dv_plan.type"/>
+        <output id="Mentor__uvQf" name="Mentor" typeRef="dv_test.type"/>
+        <task-model>{
+  "schema": {
+    "title": "Define goals &amp; plan",
+    "description": "Set the plan period and add your goals: what you want to develop, how you will know it is achieved and by when. The plan then goes to your manager for approval.",
+    "type": "object",
+    "required": [
+      "Plan"
+    ],
+    "properties": {
+          "Mentor": {
+  "type": "object",
+  "title": "Mentor",
+  "properties": {
+    "name": { "type": "string", "title": "Mentor name" }
+  }
+},
+      "Employee": {
+        "type": "object",
+        "title": "Employee",
+        "properties": {
+          "employeeId": {
+            "type": "string",
+            "title": "Employee number"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "jobTitle": {
+            "type": "string",
+            "title": "Job title"
+          },
+          "managerId": {
+            "type": "string",
+            "title": "Manager number"
+          },
+          "managerName": {
+            "type": "string",
+            "title": "Manager"
+          },
+          "trigger": {
+            "type": "string",
+            "title": "Reason for the plan",
+            "enum": [
+              "ANNUAL_REVIEW",
+              "NEW_ROLE",
+              "CAREER_GROWTH",
+              "PERFORMANCE_IMPROVEMENT",
+              "ONBOARDING"
+            ],
+            "enumNames": [
+              "Annual review",
+              "New role",
+              "Career growth",
+              "Performance improvement",
+              "Onboarding"
+            ]
+          }
+        }
+      },
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "title": "Goal",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "enum": [
+                    "SKILL",
+                    "KNOWLEDGE",
+                    "BEHAVIOUR",
+                    "CAREER"
+                  ],
+                  "enumNames": [
+                    "Skill",
+                    "Knowledge",
+                    "Behaviour",
+                    "Career"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "title",
+                "type",
+                "successCriteria",
+                "targetDate"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "period",
+          "goals"
+        ]
+      }
+    }
+  },
+  "uiSchema": {
+    "Employee": {
+      "ui:order": [
+        "employeeId",
+        "name",
+        "jobTitle",
+        "managerId",
+        "managerName",
+        "trigger"
+      ],
+      "ui:readonly": true
+    },
+    "Plan": {
+      "ui:order": [
+        "period",
+        "goals"
+      ],
+      "goals": {
+        "items": {
+          "ui:order": [
+            "title",
+            "type",
+            "description",
+            "successCriteria",
+            "targetDate"
+          ],
+          "description": {
+            "ui:widget": "textarea",
+            "ui:options": {
+              "rows": 3
+            }
+          },
+          "successCriteria": {
+            "ui:widget": "textarea",
+            "ui:options": {
+              "rows": 3
+            }
+          }
+        }
+      }
+    },
+    "ui:order": [
+      "Employee",
+      "Plan",
+      "Mentor"
+    ]
+  },
+  "submitLabel": "Send for approval"
+}</task-model>
+    </cafienne:implementation>
+</humanTask>

@@ -1,0 +1,5 @@
+<type xmlns="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:cafienne="org.cafienne" id="dv_focus.type" name="dv_focus">
+    <schema>
+        <property id="sp__RQhiG_0" name="area" type="string" multiplicity="ExactlyOne"/>
+    </schema>
+</type>
