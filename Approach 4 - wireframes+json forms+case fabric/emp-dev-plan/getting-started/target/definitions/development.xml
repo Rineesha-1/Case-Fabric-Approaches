@@ -1,0 +1,3223 @@
+<definitions xmlns="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:cafienne="org.cafienne">
+    <caseFileItemDefinition name="development" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="development.type"/>
+    <caseFileItemDefinition name="dv_employee" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_employee.type">
+        <property name="employeeId" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="managerId" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="trigger" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_onboarding" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_onboarding.type">
+        <property name="itRequestSent" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+        <property name="mandatoryItemsDone" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+        <property name="completed" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+        <property name="status" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="itStatus" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="itSentAt" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="itCompletedAt" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="equipmentReceived" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+        <property name="equipmentNote" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="equipmentConfirmedAt" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="completedAt" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="completedBy" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_itrequest" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_itrequest.type">
+        <property name="itLaptopModel" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="itKeyboardLayout" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="itReadyBy" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
+        <property name="itDeliveryMethod" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="itAccessories" type="http://www.omg.org/spec/CMMN/PropertyType/string">
+            <extensionElements mustUnderstand="false">
+                <cafienne:implementation multiplicity="ZeroOrMore"/>
+            </extensionElements>
+        </property>
+        <property name="itAccounts" type="http://www.omg.org/spec/CMMN/PropertyType/string">
+            <extensionElements mustUnderstand="false">
+                <cafienne:implementation multiplicity="ZeroOrMore"/>
+            </extensionElements>
+        </property>
+        <property name="itNotes" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_asset" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_asset.type">
+        <property name="assetType" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="model" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="assetNumber" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="serialNumber" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="issuedOn" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
+        <property name="received" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_checklistitem" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_checklistitem.type">
+        <property name="section" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="name" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="ownerRole" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="itemKind" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="assetType" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="mandatory" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+        <property name="sortOrder" type="http://www.omg.org/spec/CMMN/PropertyType/integer"/>
+        <property name="status" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="doneAt" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="doneBy" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="goals" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_plan_type_goals.object">
+        <property name="title" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="type" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="description" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="successCriteria" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="targetDate" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_plan" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_plan.type">
+        <property name="roundNo" type="http://www.omg.org/spec/CMMN/PropertyType/integer"/>
+        <property name="period" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_approval" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_approval.type">
+        <property name="decision" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="comments" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="decidedBy" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_activity" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_activity.type">
+        <property name="activityId" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="type" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="description" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="relatedGoal" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="status" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="dueDate" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
+        <property name="outcome" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_progressreview" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_progressreview.type">
+        <property name="date" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
+        <property name="onTrack" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+        <property name="notes" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="adjustments" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="planCompleted" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="goalResults" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_selfassessment_type_goalResults.object">
+        <property name="goalTitle" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="result" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="comments" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_selfassessment" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_selfassessment.type">
+        <property name="submitted" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+        <property name="summary" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="goalResults" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_evaluation_type_goalResults.object">
+        <property name="goalTitle" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="result" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="comments" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_evaluation" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_evaluation.type">
+        <property name="outcome" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="summary" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="furtherDevelopment" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="goals" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround_type_goals.object">
+        <property name="title" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="type" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="description" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="successCriteria" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="targetDate" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="plan" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround_type_plan.object">
+        <property name="period" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="approval" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround_type_approval.object">
+        <property name="decision" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="comments" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="decidedBy" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="activities" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround_type_activities.object">
+        <property name="type" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="description" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="relatedGoal" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="status" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="dueDate" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
+        <property name="outcome" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="progressReviews" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround_type_progressReviews.object">
+        <property name="date" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
+        <property name="onTrack" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+        <property name="notes" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="adjustments" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="planCompleted" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="goalResults" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround_type_goalResults.object">
+        <property name="goalTitle" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="result" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="comments" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="selfAssessment" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround_type_selfAssessment.object">
+        <property name="summary" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="goalResults" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround_type_goalResults.object">
+        <property name="goalTitle" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="result" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="comments" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="evaluation" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround_type_evaluation.object">
+        <property name="outcome" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="summary" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="furtherDevelopment" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_previousround" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_previousround.type">
+        <property name="roundNo" type="http://www.omg.org/spec/CMMN/PropertyType/integer"/>
+        <property name="period" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="dv_swag" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="dv_swag.type">
+        <property name="size" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="hoddieSize" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <case id="development.case" name="development" expressionLanguage="spel">
+        <documentation textFormat="text/plain">
+            <text><![CDATA[Onboarding and development plan cycle, one case per employee. The case file is the system of record for business content (the development plan, its history in PreviousRounds, equipment, the onboarding checklist); the devplan database holds only personal data (x-pii, see dv_employee_details.humantask) and shared, cross-case configuration (department, job title and checklist-template lookups). The case is continuous: it has no completion milestone.]]></text>
+        </documentation>
+        <caseFileModel cafienne:typeRef="development.type">
+            <caseFileItem id="Employee" name="Employee" multiplicity="ExactlyOne" definitionRef="dv_employee.type"/>
+            <caseFileItem id="Onboarding" name="Onboarding" multiplicity="ZeroOrOne" definitionRef="dv_onboarding.type">
+                <children>
+                    <caseFileItem id="Onboarding/ITRequest" name="ITRequest" multiplicity="ZeroOrOne" definitionRef="dv_itrequest.type"/>
+                    <caseFileItem id="Onboarding/Assets" name="Assets" multiplicity="ZeroOrMore" definitionRef="dv_asset.type"/>
+                    <caseFileItem id="Onboarding/Checklist" name="Checklist" multiplicity="ZeroOrMore" definitionRef="dv_checklistitem.type"/>
+                </children>
+            </caseFileItem>
+            <caseFileItem id="Plan" name="Plan" multiplicity="ZeroOrOne" definitionRef="dv_plan.type">
+                <children>
+                    <caseFileItem id="Plan/goals" name="goals" multiplicity="ZeroOrMore" definitionRef="dv_plan_type_goals.object"/>
+                </children>
+            </caseFileItem>
+            <caseFileItem id="Approval" name="Approval" multiplicity="ZeroOrOne" definitionRef="dv_approval.type"/>
+            <caseFileItem id="Activities" name="Activities" multiplicity="ZeroOrMore" definitionRef="dv_activity.type"/>
+            <caseFileItem id="ProgressReviews" name="ProgressReviews" multiplicity="ZeroOrMore" definitionRef="dv_progressreview.type"/>
+            <caseFileItem id="SelfAssessment" name="SelfAssessment" multiplicity="ZeroOrOne" definitionRef="dv_selfassessment.type">
+                <children>
+                    <caseFileItem id="SelfAssessment/goalResults" name="goalResults" multiplicity="ZeroOrMore" definitionRef="dv_selfassessment_type_goalResults.object"/>
+                </children>
+            </caseFileItem>
+            <caseFileItem id="Evaluation" name="Evaluation" multiplicity="ZeroOrOne" definitionRef="dv_evaluation.type">
+                <children>
+                    <caseFileItem id="Evaluation/goalResults" name="goalResults" multiplicity="ZeroOrMore" definitionRef="dv_evaluation_type_goalResults.object"/>
+                </children>
+            </caseFileItem>
+            <caseFileItem id="PreviousRounds" name="PreviousRounds" multiplicity="ZeroOrMore" definitionRef="dv_previousround.type">
+                <children>
+                    <caseFileItem id="PreviousRounds/plan" name="plan" multiplicity="ZeroOrOne" definitionRef="dv_previousround_type_plan.object">
+                        <children>
+                            <caseFileItem id="PreviousRounds/plan/goals" name="goals" multiplicity="ZeroOrMore" definitionRef="dv_previousround_type_goals.object"/>
+                        </children>
+                    </caseFileItem>
+                    <caseFileItem id="PreviousRounds/approval" name="approval" multiplicity="ZeroOrOne" definitionRef="dv_previousround_type_approval.object"/>
+                    <caseFileItem id="PreviousRounds/activities" name="activities" multiplicity="ZeroOrMore" definitionRef="dv_previousround_type_activities.object"/>
+                    <caseFileItem id="PreviousRounds/progressReviews" name="progressReviews" multiplicity="ZeroOrMore" definitionRef="dv_previousround_type_progressReviews.object"/>
+                    <caseFileItem id="PreviousRounds/selfAssessment" name="selfAssessment" multiplicity="ZeroOrOne" definitionRef="dv_previousround_type_selfAssessment.object">
+                        <children>
+                            <caseFileItem id="PreviousRounds/selfAssessment/goalResults" name="goalResults" multiplicity="ZeroOrMore" definitionRef="dv_previousround_type_goalResults.object"/>
+                        </children>
+                    </caseFileItem>
+                    <caseFileItem id="PreviousRounds/evaluation" name="evaluation" multiplicity="ZeroOrOne" definitionRef="dv_previousround_type_evaluation.object">
+                        <children>
+                            <caseFileItem id="PreviousRounds/evaluation/goalResults" name="goalResults" multiplicity="ZeroOrMore" definitionRef="dv_previousround_type_goalResults.object"/>
+                        </children>
+                    </caseFileItem>
+                </children>
+            </caseFileItem>
+            <caseFileItem id="swag" name="swag" multiplicity="ExactlyOne" definitionRef="dv_swag.type"/>
+        </caseFileModel>
+        <casePlanModel id="cm_development.case_development_0" name="Development" autoComplete="false">
+            <planItem id="pi_onboarding" name="0 · Onboarding" definitionRef="onboarding">
+                <documentation textFormat="text/plain">
+                    <text><![CDATA[Only for new joiners: starts when the devplan backend creates the Onboarding case file item right after "+ New Employee" started the case. Cases started for an existing employee never get that item, so this stage never starts for them. The IT request, checklist and issued assets live in the case file (Onboarding); only the employee's personal details stay in the devplan database.]]></text>
+                </documentation>
+                <entryCriterion id="ec_onboarding_0" sentryRef="s_ec_onboarding_0"/>
+                <exitCriterion id="xc_onboarding_0" sentryRef="s_xc_onboarding_0"/>
+            </planItem>
+            <planItem id="pi_mail_onboarded" name="Send onboarding complete e-mail" definitionRef="mail_onboarded">
+                <documentation textFormat="text/plain">
+                    <text><![CDATA[Mail to HR (manager in cc) when the Onboarding stage ends (completes, or exits on the milestone Employee onboarded). At case level, because the stage itself has ended by then.]]></text>
+                </documentation>
+                <entryCriterion id="ec_mail_onboarded_0" sentryRef="s_ec_mail_onboarded_0"/>
+                <entryCriterion id="ec_mail_onboarded_1" sentryRef="s_ec_mail_onboarded_1"/>
+            </planItem>
+            <planItem id="pi_development_cycle" name="Development plan cycle" definitionRef="development_cycle">
+                <documentation textFormat="text/plain">
+                    <text><![CDATA[Continuous: runs for the life of the case.]]></text>
+                </documentation>
+            </planItem>
+            <sentry id="s_ec_onboarding_0">
+                <caseFileItemOnPart id="op_onboarding_0_0" sourceRef="Onboarding">
+                    <standardEvent>create</standardEvent>
+                </caseFileItemOnPart>
+            </sentry>
+            <sentry id="s_xc_onboarding_0">
+                <planItemOnPart id="op_xc_onboarding_0_0" sourceRef="pi_employee_onboarded">
+                    <standardEvent>occur</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <sentry id="s_ec_mail_onboarded_0">
+                <planItemOnPart id="op_mail_onboarded_0_0" sourceRef="pi_onboarding">
+                    <standardEvent>complete</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <sentry id="s_ec_mail_onboarded_1">
+                <planItemOnPart id="op_mail_onboarded_1_0" sourceRef="pi_onboarding">
+                    <standardEvent>exit</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <stage id="onboarding" name="0 · Onboarding" autoComplete="false">
+                <planItem id="pi_employee_details" name="Employee details" definitionRef="employee_details">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Onboarding step 1. Owner: HR.]]></text>
+                    </documentation>
+                </planItem>
+                <planItem id="pi_it_request" name="IT &amp; equipment request" definitionRef="it_request">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Onboarding step 2. Owner: HR. Send to IT starts the Equipment request.]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_it_request_0" sentryRef="s_ec_it_request_0"/>
+                </planItem>
+                <planItem id="pi_mail_it_request" name="Notify IT" definitionRef="mail_it_request">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Mail to the IT admin that an equipment request is waiting.]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_mail_it_request_0" sentryRef="s_ec_mail_it_request_0"/>
+                </planItem>
+                <planItem id="pi_equipment_request" name="Equipment request" definitionRef="equipment_request">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Owner: IT admin. Issue equipment and set up accounts.]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_equipment_request_0" sentryRef="s_ec_equipment_request_0"/>
+                </planItem>
+                <planItem id="pi_complete_onboarding" name="Complete onboarding" definitionRef="complete_onboarding">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[HR, once every mandatory checklist item is done. The backend sets Onboarding.mandatoryItemsDone first.]]></text>
+                    </documentation>
+                </planItem>
+                <planItem id="pi_employee_onboarded" name="Employee onboarded" definitionRef="employee_onboarded">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Ends onboarding. Development plan, Appraisal and Work cycle are then started by hand.]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_employee_onboarded_0" sentryRef="s_ec_employee_onboarded_0"/>
+                </planItem>
+                <sentry id="s_ec_it_request_0">
+                    <planItemOnPart id="op_it_request_0_0" sourceRef="pi_employee_details">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_mail_it_request_0">
+                    <planItemOnPart id="op_mail_it_request_0_0" sourceRef="pi_it_request">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_equipment_request_0">
+                    <planItemOnPart id="op_equipment_request_0_0" sourceRef="pi_it_request">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_employee_onboarded_0">
+                    <ifPart contextRef="Onboarding">
+                        <condition>
+                            <body><![CDATA[Onboarding?.mandatoryItemsDone == true]]></body>
+                        </condition>
+                    </ifPart>
+                    <planItemOnPart id="op_employee_onboarded_0_0" sourceRef="pi_complete_onboarding">
+                        <standardEvent>occur</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+            </stage>
+            <humanTask id="employee_details" name="Employee details" isBlocking="true" performerRef="cr_dv_HR">
+                <inputs id="in_employee_details_Employee" name="Employee" bindingRef="Employee"/>
+                <outputs id="out_employee_details_Employee" name="Employee" bindingRef="Employee">
+                    <bindingRefinement>
+                        <body><![CDATA[replace]]></body>
+                    </bindingRefinement>
+                </outputs>
+                <outputs id="_LvCNu_20" name="swag" bindingRef="swag">
+                    <bindingRefinement id="_LvCNu_21">
+                        <body><![CDATA[replace]]></body>
+                    </bindingRefinement>
+                </outputs>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="EmployeeDetails" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_employee_details.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Onboarding step 1 - Employee details. Owner: HR. The "Details" object is personal data: the devplan backend reads and writes it in its own database (x-pii "employee"), never in the case file. Its field list, titles, required-ness and layout come from the employee table's own columns and column comments (see migration V13__employee_details_schema_from_db.sql / forms/TableStore.java), not from this task-model - the case model only carries the "x-pii": "employee" routing marker. On complete the backend creates the account and returns the Employee case item.]]></text>
+                        </documentation>
+                        <input id="i_Employee__employee_details" name="Employee" typeRef="dv_employee.type"/>
+                        <output id="o_Employee__employee_details" name="Employee" typeRef="dv_employee.type"/>
+                        <output id="swag__G4OQ" name="swag" typeRef="dv_swag.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Employee details",
+    "description": "Personal details and the role of the new employee. Save draft keeps the form; Save &amp; continue creates the account and opens the IT request.",
+    "type": "object",
+    "properties": {
+          "swag": {
+  "type": "object",
+  "title": "Welcome kit",
+  "properties": {
+    "size": {
+      "type": "string",
+      "title": "T-shirt size",
+      "oneOf": [
+        { "const": "S", "title": "S" },
+        { "const": "M", "title": "M" },
+        { "const": "L", "title": "L" },
+        { "const": "XL", "title": "XL" }
+      ]
+    },
+          "hoodieSize": {
+      "type": "string",
+      "title": "Hoodie size",
+      "oneOf": [
+        { "const": "S", "title": "S" }, { "const": "M", "title": "M" },
+        { "const": "L", "title": "L" }, { "const": "XL", "title": "XL" }
+      ]
+    }
+  }
+},
+      "Details": {
+        "type": "object",
+        "x-pii": "employee",
+        "x-on-complete": "createEmployee"
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      { "type": "PiiSection", "scope": "#/properties/Details" },
+          {
+  "type": "Group",
+  "label": "Welcome kit",
+  "elements": [
+           { "type": "Control", "scope": "#/properties/swag/properties/hoodieSize" },
+    { "type": "Control", "scope": "#/properties/swag/properties/size" }
+          
+  ]
+}
+    ]
+  },
+  "submitLabel": "Save &amp; continue"
+}</task-model>
+                        <parameterMapping id="pm_employee_details_in_Employee" sourceRef="in_employee_details_Employee" targetRef="i_Employee__employee_details"/>
+                        <parameterMapping id="pm_employee_details_out_Employee" sourceRef="o_Employee__employee_details" targetRef="out_employee_details_Employee"/>
+                        <parameterMapping id="_LvCNu_18" sourceRef="swag__G4OQ" targetRef="_LvCNu_20"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <humanTask id="it_request" name="IT &amp; equipment request" isBlocking="true" performerRef="cr_dv_HR">
+                <inputs id="in_it_request_Employee" name="Employee" bindingRef="Employee"/>
+                <outputs id="out_it_request_Onboarding" name="Onboarding" bindingRef="Onboarding"/>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="ITRequest" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_it_request.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Onboarding step 2 - IT & equipment request. Owner: HR. The request is ordinary case-file content, written straight to Onboarding.ITRequest; on complete the backend syncs the IT admin's checklist items and marks Onboarding.itRequestSent, which starts the IT admin's Equipment request.]]></text>
+                        </documentation>
+                        <input id="i_Employee__it_request" name="Employee" typeRef="dv_employee.type"/>
+                        <output id="o_Onboarding__it_request" name="Onboarding" typeRef="dv_onboarding.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "IT &amp; equipment request",
+    "description": "What IT should prepare for the new employee. Send to IT gives the IT admin an Equipment request task.",
+    "type": "object",
+    "properties": {
+      "Onboarding": {
+        "type": "object",
+        "x-on-complete": "sendToIt",
+        "required": ["ITRequest"],
+        "properties": {
+          "ITRequest": {
+            "type": "object",
+            "required": ["itLaptopModel", "itReadyBy", "itDeliveryMethod", "itKeyboardLayout"],
+            "properties": {
+              "itLaptopModel": { "type": "string", "title": "Laptop", "enum": ["MacBook Pro 14\"", "MacBook Air 13\"", "Dell XPS 15", "Windows standard"] },
+              "itReadyBy": { "type": "string", "title": "Ready by", "format": "date" },
+              "itDeliveryMethod": {
+                "type": "string", "title": "Delivery",
+                "oneOf": [
+                  { "const": "OFFICE_DAY1", "title": "Pick up at office on day 1" },
+                  { "const": "SHIP_HOME", "title": "Ship to home address" }
+                ]
+              },
+              "itKeyboardLayout": { "type": "string", "title": "Keyboard layout", "enum": ["US International", "Dutch"] },
+              "itAccessories": {
+                "type": "array", "title": "Accessories", "uniqueItems": true,
+                "items": { "type": "string", "enum": ["Monitor", "Keyboard &amp; mouse", "Headset", "Docking station", "Phone", "Access badge"] }
+              },
+              "itAccounts": {
+                "type": "array", "title": "Accounts &amp; software", "uniqueItems": true,
+                "items": { "type": "string", "enum": ["Microsoft 365 / e-mail", "Slack", "VPN", "Jira / Confluence", "GitHub", "Figma", "AWS console", "Docker Desktop"] }
+              },
+              "itNotes": { "type": "string", "title": "Notes for IT" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Laptop &amp; hardware",
+        "elements": [
+          { "type": "HorizontalLayout", "elements": [
+            { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itLaptopModel" },
+            { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itReadyBy" } ] },
+          { "type": "HorizontalLayout", "elements": [
+            { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itDeliveryMethod" },
+            { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itKeyboardLayout" } ] },
+          { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itAccessories" }
+        ]
+      },
+      {
+        "type": "Group",
+        "label": "Accounts &amp; software",
+        "elements": [
+          { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itAccounts" },
+          { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itNotes", "options": { "multi": true } }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Send to IT"
+}</task-model>
+                        <parameterMapping id="pm_it_request_in_Employee" sourceRef="in_it_request_Employee" targetRef="i_Employee__it_request"/>
+                        <parameterMapping id="pm_it_request_out_Onboarding" sourceRef="o_Onboarding__it_request" targetRef="out_it_request_Onboarding"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <processTask id="mail_it_request" name="Notify IT" isBlocking="true" processRef="dv_mail_it_request.process">
+                <inputs id="in_mail_it_request_Employee" name="Employee" bindingRef="Employee"/>
+                <parameterMapping id="pm_mail_it_request_employeeId" sourceRef="in_mail_it_request_Employee" targetRef="employeeId">
+                    <transformation>
+                        <body><![CDATA[Employee.employeeId]]></body>
+                    </transformation>
+                </parameterMapping>
+            </processTask>
+            <humanTask id="equipment_request" name="Equipment request" isBlocking="true" performerRef="cr_dv_ITAdmin">
+                <inputs id="in_equipment_request_Employee" name="Employee" bindingRef="Employee"/>
+                <inputs id="in_equipment_request_Onboarding" name="Onboarding" bindingRef="Onboarding"/>
+                <outputs id="out_equipment_request_Onboarding" name="Onboarding" bindingRef="Onboarding"/>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="EquipmentRequest" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_equipment_request.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Equipment request. Owner: IT admin. Shows HR's request (read-only, from Onboarding.ITRequest in the case file) and records the issued equipment in Onboarding.Assets. Accounts are ticked on the IT checklist shown with the task.]]></text>
+                        </documentation>
+                        <input id="i_Employee__equipment_request" name="Employee" typeRef="dv_employee.type"/>
+                        <input id="i_Onboarding__equipment_request" name="Onboarding" typeRef="dv_onboarding.type"/>
+                        <output id="o_Onboarding__equipment_request" name="Onboarding" typeRef="dv_onboarding.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Equipment request",
+    "description": "Record each item you issue: it is added to the employee's assets and ticks the matching checklist item. Tick the accounts on the checklist below, then Mark setup done.",
+    "type": "object",
+    "properties": {
+      "Onboarding": {
+        "type": "object",
+        "x-on-complete": "itSetupDone",
+        "properties": {
+          "ITRequest": {
+            "type": "object",
+            "title": "Requested by HR",
+            "readOnly": true,
+            "properties": {
+              "itLaptopModel": { "type": "string", "title": "Laptop" },
+              "itKeyboardLayout": { "type": "string", "title": "Keyboard layout" },
+              "itReadyBy": { "type": "string", "title": "Ready by", "format": "date" },
+              "itDeliveryMethod": {
+                "type": "string", "title": "Delivery",
+                "oneOf": [
+                  { "const": "OFFICE_DAY1", "title": "Pick up at office on day 1" },
+                  { "const": "SHIP_HOME", "title": "Ship to home address" }
+                ]
+              },
+              "itAccessories": {
+                "type": "array", "title": "Accessories", "uniqueItems": true,
+                "items": { "type": "string", "enum": ["Monitor", "Keyboard &amp; mouse", "Headset", "Docking station", "Phone", "Access badge"] }
+              },
+              "itAccounts": {
+                "type": "array", "title": "Accounts &amp; software", "uniqueItems": true,
+                "items": { "type": "string", "enum": ["Microsoft 365 / e-mail", "Slack", "VPN", "Jira / Confluence", "GitHub", "Figma", "AWS console", "Docker Desktop"] }
+              },
+              "itNotes": { "type": "string", "title": "Notes" }
+            }
+          },
+          "Assets": {
+            "type": "array",
+            "title": "Equipment issued",
+            "items": {
+              "type": "object",
+              "required": ["assetType", "model", "assetNumber", "issuedOn"],
+              "properties": {
+                "assetType": {
+                  "type": "string", "title": "Type",
+                  "oneOf": [
+                    { "const": "LAPTOP", "title": "Laptop" },
+                    { "const": "MONITOR", "title": "Monitor" },
+                    { "const": "PHONE", "title": "Phone" },
+                    { "const": "ACCESS_BADGE", "title": "Access badge" },
+                    { "const": "DOCKING_STATION", "title": "Docking station" },
+                    { "const": "HEADSET", "title": "Headset" },
+                    { "const": "KEYBOARD_MOUSE", "title": "Keyboard &amp; mouse" },
+                    { "const": "OTHER", "title": "Other" }
+                  ]
+                },
+                "model": { "type": "string", "title": "Model" },
+                "assetNumber": { "type": "string", "title": "Asset no." },
+                "serialNumber": { "type": "string", "title": "Serial number" },
+                "issuedOn": { "type": "string", "title": "Issue date", "format": "date" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Requested by HR",
+        "options": { "readonly": true },
+        "elements": [
+          { "type": "HorizontalLayout", "elements": [
+            { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itLaptopModel" },
+            { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itKeyboardLayout" } ] },
+          { "type": "HorizontalLayout", "elements": [
+            { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itReadyBy" },
+            { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itDeliveryMethod" } ] },
+          { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itAccessories" },
+          { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itAccounts" },
+          { "type": "Control", "scope": "#/properties/Onboarding/properties/ITRequest/properties/itNotes", "options": { "multi": true } }
+        ]
+      },
+      {
+        "type": "Group",
+        "label": "Equipment issued",
+        "elements": [
+          { "type": "Control", "scope": "#/properties/Onboarding/properties/Assets", "label": "Issued items", "options": { "table": true } }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Mark setup done"
+}</task-model>
+                        <parameterMapping id="pm_equipment_request_in_Employee" sourceRef="in_equipment_request_Employee" targetRef="i_Employee__equipment_request"/>
+                        <parameterMapping id="pm_equipment_request_in_Onboarding" sourceRef="in_equipment_request_Onboarding" targetRef="i_Onboarding__equipment_request"/>
+                        <parameterMapping id="pm_equipment_request_out_Onboarding" sourceRef="o_Onboarding__equipment_request" targetRef="out_equipment_request_Onboarding"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <userEvent id="complete_onboarding" name="Complete onboarding" authorizedRoleRefs="cr_dv_HR"/>
+            <milestone id="employee_onboarded" name="Employee onboarded"/>
+            <processTask id="mail_onboarded" name="Send onboarding complete e-mail" isBlocking="true" processRef="dv_mail_onboarded.process">
+                <inputs id="in_mail_onboarded_Employee" name="Employee" bindingRef="Employee"/>
+                <parameterMapping id="pm_mail_onboarded_employeeId" sourceRef="in_mail_onboarded_Employee" targetRef="employeeId">
+                    <transformation>
+                        <body><![CDATA[Employee.employeeId]]></body>
+                    </transformation>
+                </parameterMapping>
+            </processTask>
+            <stage id="development_cycle" name="Development plan cycle" autoComplete="false">
+                <planItem id="pi_development_plan" name="Development plan" definitionRef="development_plan">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Repeating. Further development starts a new round inside this instance; Plan closed ends it, a new instance then waits for the next start.]]></text>
+                    </documentation>
+                    <exitCriterion id="xc_development_plan_0" sentryRef="s_xc_development_plan_0"/>
+                    <itemControl id="ic_development_plan">
+                        <repetitionRule id="rr_development_plan" contextRef="Employee">
+                            <condition id="rr_development_plan_cond">
+                                <body><![CDATA[true]]></body>
+                            </condition>
+                        </repetitionRule>
+                    </itemControl>
+                </planItem>
+                <sentry id="s_xc_development_plan_0">
+                    <planItemOnPart id="op_development_plan_0_0" sourceRef="pi_plan_closed">
+                        <standardEvent>occur</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+            </stage>
+            <stage id="development_plan" name="Development plan" autoComplete="false">
+                <planItem id="pi_start_plan" name="Start development plan" definitionRef="start_plan"/>
+                <planItem id="pi_plan" name="1 · Plan" definitionRef="plan">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Starts on Start development plan, or on Further development from the evaluation (a new round).]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_plan_0" sentryRef="s_ec_plan_0"/>
+                    <entryCriterion id="ec_plan_1" sentryRef="s_ec_plan_1"/>
+                    <itemControl id="ic_plan">
+                        <repetitionRule id="rr_plan" contextRef="Employee">
+                            <condition id="rr_plan_cond">
+                                <body><![CDATA[true]]></body>
+                            </condition>
+                        </repetitionRule>
+                    </itemControl>
+                </planItem>
+                <planItem id="pi_perform" name="2 · Perform plan" definitionRef="perform">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Exits on Plan performed, which also closes activities still open.]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_perform_0" sentryRef="s_ec_perform_0"/>
+                    <exitCriterion id="xc_perform_0" sentryRef="s_xc_perform_0"/>
+                    <itemControl id="ic_perform">
+                        <repetitionRule id="rr_perform" contextRef="Employee">
+                            <condition id="rr_perform_cond">
+                                <body><![CDATA[true]]></body>
+                            </condition>
+                        </repetitionRule>
+                    </itemControl>
+                </planItem>
+                <planItem id="pi_evaluate" name="3 · Evaluate plan" definitionRef="evaluate">
+                    <entryCriterion id="ec_evaluate_0" sentryRef="s_ec_evaluate_0"/>
+                    <itemControl id="ic_evaluate">
+                        <repetitionRule id="rr_evaluate" contextRef="Employee">
+                            <condition id="rr_evaluate_cond">
+                                <body><![CDATA[true]]></body>
+                            </condition>
+                        </repetitionRule>
+                        <requiredRule id="rq_evaluate" contextRef="Employee">
+                            <condition id="rq_evaluate_cond">
+                                <body><![CDATA[true]]></body>
+                            </condition>
+                        </requiredRule>
+                    </itemControl>
+                </planItem>
+                <planItem id="pi_plan_closed" name="Plan closed" definitionRef="plan_closed">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[At this level, not inside Evaluate plan, which could auto-complete before it occurs.]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_plan_closed_0" sentryRef="s_ec_plan_closed_0"/>
+                </planItem>
+                <sentry id="s_ec_plan_0">
+                    <planItemOnPart id="op_plan_0_0" sourceRef="pi_start_plan">
+                        <standardEvent>occur</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_plan_1">
+                    <ifPart contextRef="Evaluation">
+                        <condition>
+                            <body><![CDATA[Evaluation?.furtherDevelopment == true]]></body>
+                        </condition>
+                    </ifPart>
+                    <planItemOnPart id="op_plan_1_0" sourceRef="pi_evaluate_results">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_perform_0">
+                    <planItemOnPart id="op_perform_0_0" sourceRef="pi_plan_approved">
+                        <standardEvent>occur</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_xc_perform_0">
+                    <planItemOnPart id="op_perform_0_0" sourceRef="pi_plan_performed">
+                        <standardEvent>occur</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_evaluate_0">
+                    <planItemOnPart id="op_evaluate_0_0" sourceRef="pi_plan_performed">
+                        <standardEvent>occur</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_plan_closed_0">
+                    <ifPart contextRef="Evaluation">
+                        <condition>
+                            <body><![CDATA[Evaluation?.furtherDevelopment != true]]></body>
+                        </condition>
+                    </ifPart>
+                    <planItemOnPart id="op_plan_closed_0_0" sourceRef="pi_evaluate_results">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+            </stage>
+            <userEvent id="start_plan" name="Start development plan" authorizedRoleRefs="cr_dv_Manager cr_dv_HR"/>
+            <stage id="plan" name="1 · Plan" autoComplete="true">
+                <planItem id="pi_define_plan" name="Define goals &amp; plan" definitionRef="define_plan">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Owner: Employee. Starts empty in every round (earlier rounds are archived in PreviousRounds). The manager may also fill it in (delegation).]]></text>
+                    </documentation>
+                </planItem>
+                <planItem id="pi_approve_plan" name="Approve plan" definitionRef="approve_plan">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Owner: Manager. ]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_approve_plan_0" sentryRef="s_ec_approve_plan_0"/>
+                    <entryCriterion id="ec_approve_plan_1" sentryRef="s_ec_approve_plan_1"/>
+                    <itemControl id="ic_approve_plan">
+                        <repetitionRule id="rr_approve_plan" contextRef="Employee">
+                            <condition id="rr_approve_plan_cond">
+                                <body><![CDATA[true]]></body>
+                            </condition>
+                        </repetitionRule>
+                    </itemControl>
+                </planItem>
+                <planItem id="pi_revise_plan" name="Revise plan" definitionRef="revise_plan">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Owner: Employee. ]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_revise_plan_0" sentryRef="s_ec_revise_plan_0"/>
+                    <itemControl id="ic_revise_plan">
+                        <repetitionRule id="rr_revise_plan" contextRef="Employee">
+                            <condition id="rr_revise_plan_cond">
+                                <body><![CDATA[true]]></body>
+                            </condition>
+                        </repetitionRule>
+                    </itemControl>
+                </planItem>
+                <planItem id="pi_plan_approved" name="Plan approved" definitionRef="plan_approved">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Required, so the Plan stage cannot auto-complete before approval.]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_plan_approved_0" sentryRef="s_ec_plan_approved_0"/>
+                    <itemControl id="ic_plan_approved">
+                        <requiredRule id="rq_plan_approved" contextRef="Employee">
+                            <condition id="rq_plan_approved_cond">
+                                <body><![CDATA[true]]></body>
+                            </condition>
+                        </requiredRule>
+                    </itemControl>
+                </planItem>
+                <sentry id="s_ec_approve_plan_0">
+                    <planItemOnPart id="op_approve_plan_0_0" sourceRef="pi_define_plan">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_approve_plan_1">
+                    <planItemOnPart id="op_approve_plan_1_0" sourceRef="pi_revise_plan">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_revise_plan_0">
+                    <ifPart contextRef="Approval">
+                        <condition>
+                            <body><![CDATA[Approval?.decision == 'REJECTED']]></body>
+                        </condition>
+                    </ifPart>
+                    <planItemOnPart id="op_revise_plan_0_0" sourceRef="pi_approve_plan">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_plan_approved_0">
+                    <ifPart contextRef="Approval">
+                        <condition>
+                            <body><![CDATA[Approval?.decision == 'APPROVED']]></body>
+                        </condition>
+                    </ifPart>
+                    <planItemOnPart id="op_plan_approved_0_0" sourceRef="pi_approve_plan">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+            </stage>
+            <humanTask id="define_plan" name="Define goals &amp; plan" isBlocking="true" performerRef="cr_dv_Employee">
+                <inputs id="in_define_plan_Employee" name="Employee" bindingRef="Employee"/>
+                <outputs id="out_define_plan_Plan" name="Plan" bindingRef="Plan">
+                    <bindingRefinement>
+                        <body><![CDATA[replace]]></body>
+                    </bindingRefinement>
+                </outputs>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="DefinePlan" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_define_plan.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Define goals & plan. Owner: Employee. Starts empty in every round. The manager may also fill it in (delegation).]]></text>
+                        </documentation>
+                        <input id="i_Employee__define_plan" name="Employee" typeRef="dv_employee.type"/>
+                        <output id="o_Plan__define_plan" name="Plan" typeRef="dv_plan.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Define goals &amp; plan",
+    "description": "Set the plan period and add your goals: what you want to develop, how you will know it is achieved and by when. The plan then goes to your manager for approval.",
+    "type": "object",
+    "required": [
+      "Plan"
+    ],
+    "properties": {
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "oneOf": [
+                    {
+                      "const": "SKILL",
+                      "title": "Skill"
+                    },
+                    {
+                      "const": "KNOWLEDGE",
+                      "title": "Knowledge"
+                    },
+                    {
+                      "const": "BEHAVIOUR",
+                      "title": "Behaviour"
+                    },
+                    {
+                      "const": "CAREER",
+                      "title": "Career"
+                    }
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "title",
+                "type",
+                "successCriteria",
+                "targetDate"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "x-on-complete": "submitPlan",
+        "required": [
+          "period",
+          "goals"
+        ]
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Plan",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/period"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/goals",
+            "label": "Goals",
+            "options": {
+              "table": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Send for approval"
+}</task-model>
+                        <parameterMapping id="pm_define_plan_in_Employee" sourceRef="in_define_plan_Employee" targetRef="i_Employee__define_plan"/>
+                        <parameterMapping id="pm_define_plan_out_Plan" sourceRef="o_Plan__define_plan" targetRef="out_define_plan_Plan"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <humanTask id="approve_plan" name="Approve plan" isBlocking="true" performerRef="cr_dv_Manager">
+                <inputs id="in_approve_plan_Employee" name="Employee" bindingRef="Employee"/>
+                <inputs id="in_approve_plan_Plan" name="Plan" bindingRef="Plan"/>
+                <outputs id="out_approve_plan_Approval" name="Approval" bindingRef="Approval">
+                    <bindingRefinement>
+                        <body><![CDATA[replace]]></body>
+                    </bindingRefinement>
+                </outputs>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="ApprovePlan" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_approve_plan.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Approve plan. Owner: Manager. ]]></text>
+                        </documentation>
+                        <input id="i_Employee__approve_plan" name="Employee" typeRef="dv_employee.type"/>
+                        <input id="i_Plan__approve_plan" name="Plan" typeRef="dv_plan.type"/>
+                        <output id="o_Approval__approve_plan" name="Approval" typeRef="dv_approval.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Approve plan",
+    "description": "Read the plan and approve it, or send it back with comments.",
+    "type": "object",
+    "required": [
+      "Approval"
+    ],
+    "properties": {
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "oneOf": [
+                    {
+                      "const": "SKILL",
+                      "title": "Skill"
+                    },
+                    {
+                      "const": "KNOWLEDGE",
+                      "title": "Knowledge"
+                    },
+                    {
+                      "const": "BEHAVIOUR",
+                      "title": "Behaviour"
+                    },
+                    {
+                      "const": "CAREER",
+                      "title": "Career"
+                    }
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        },
+        "readOnly": true
+      },
+      "Approval": {
+        "type": "object",
+        "title": "Decision",
+        "x-on-complete": "decidePlan",
+        "required": [
+          "decision"
+        ],
+        "properties": {
+          "decision": {
+            "type": "string",
+            "title": "Decision",
+            "oneOf": [
+              {
+                "const": "APPROVED",
+                "title": "Approve"
+              },
+              {
+                "const": "REJECTED",
+                "title": "Send back for changes"
+              }
+            ]
+          },
+          "comments": {
+            "type": "string",
+            "title": "Comments"
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Plan",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/period"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/goals",
+            "label": "Goals",
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Decision",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Approval/properties/decision"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Approval/properties/comments",
+            "options": {
+              "multi": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Save decision"
+}</task-model>
+                        <parameterMapping id="pm_approve_plan_in_Employee" sourceRef="in_approve_plan_Employee" targetRef="i_Employee__approve_plan"/>
+                        <parameterMapping id="pm_approve_plan_in_Plan" sourceRef="in_approve_plan_Plan" targetRef="i_Plan__approve_plan"/>
+                        <parameterMapping id="pm_approve_plan_out_Approval" sourceRef="o_Approval__approve_plan" targetRef="out_approve_plan_Approval"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <humanTask id="revise_plan" name="Revise plan" isBlocking="true" performerRef="cr_dv_Employee">
+                <inputs id="in_revise_plan_Approval" name="Approval" bindingRef="Approval"/>
+                <inputs id="in_revise_plan_Plan" name="Plan" bindingRef="Plan"/>
+                <outputs id="out_revise_plan_Plan" name="Plan" bindingRef="Plan">
+                    <bindingRefinement>
+                        <body><![CDATA[replace]]></body>
+                    </bindingRefinement>
+                </outputs>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="RevisePlan" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_revise_plan.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Revise plan. Owner: Employee. ]]></text>
+                        </documentation>
+                        <input id="i_Approval__revise_plan" name="Approval" typeRef="dv_approval.type"/>
+                        <input id="i_Plan__revise_plan" name="Plan" typeRef="dv_plan.type"/>
+                        <output id="o_Plan__revise_plan" name="Plan" typeRef="dv_plan.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Revise plan",
+    "description": "Your manager sent the plan back. Change it and send it for approval again.",
+    "type": "object",
+    "required": [
+      "Plan"
+    ],
+    "properties": {
+      "Approval": {
+        "type": "object",
+        "title": "Manager's decision",
+        "readOnly": true,
+        "properties": {
+          "decision": {
+            "type": "string",
+            "title": "Decision",
+            "oneOf": [
+              {
+                "const": "APPROVED",
+                "title": "Approved"
+              },
+              {
+                "const": "REJECTED",
+                "title": "Sent back for changes"
+              }
+            ]
+          },
+          "comments": {
+            "type": "string",
+            "title": "Comments"
+          }
+        }
+      },
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "oneOf": [
+                    {
+                      "const": "SKILL",
+                      "title": "Skill"
+                    },
+                    {
+                      "const": "KNOWLEDGE",
+                      "title": "Knowledge"
+                    },
+                    {
+                      "const": "BEHAVIOUR",
+                      "title": "Behaviour"
+                    },
+                    {
+                      "const": "CAREER",
+                      "title": "Career"
+                    }
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "title",
+                "type",
+                "successCriteria",
+                "targetDate"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "x-on-complete": "submitPlan",
+        "required": [
+          "period",
+          "goals"
+        ]
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Manager's decision",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Approval/properties/decision"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Approval/properties/comments",
+            "options": {
+              "multi": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Plan",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/period"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/goals",
+            "label": "Goals",
+            "options": {
+              "table": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Send for approval"
+}</task-model>
+                        <parameterMapping id="pm_revise_plan_in_Approval" sourceRef="in_revise_plan_Approval" targetRef="i_Approval__revise_plan"/>
+                        <parameterMapping id="pm_revise_plan_in_Plan" sourceRef="in_revise_plan_Plan" targetRef="i_Plan__revise_plan"/>
+                        <parameterMapping id="pm_revise_plan_out_Plan" sourceRef="o_Plan__revise_plan" targetRef="out_revise_plan_Plan"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <milestone id="plan_approved" name="Plan approved"/>
+            <stage id="perform" name="2 · Perform plan" autoComplete="false">
+                <planItem id="pi_progress_check" name="Progress check" definitionRef="progress_check">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Repeats ("continue") until a progress review marks the plan completed.]]></text>
+                    </documentation>
+                    <itemControl id="ic_progress_check">
+                        <repetitionRule id="rr_progress_check" contextRef="ProgressReviews">
+                            <condition id="rr_progress_check_cond">
+                                <body><![CDATA[ProgressReviews?.planCompleted != true]]></body>
+                            </condition>
+                        </repetitionRule>
+                    </itemControl>
+                </planItem>
+                <planItem id="pi_plan_performed" name="Plan performed" definitionRef="plan_performed">
+                    <entryCriterion id="ec_plan_performed_0" sentryRef="s_ec_plan_performed_0"/>
+                </planItem>
+                <sentry id="s_ec_plan_performed_0">
+                    <ifPart contextRef="ProgressReviews">
+                        <condition>
+                            <body><![CDATA[ProgressReviews?.planCompleted == true]]></body>
+                        </condition>
+                    </ifPart>
+                    <planItemOnPart id="op_plan_performed_0_0" sourceRef="pi_review_progress">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <planningTable id="pt_perform">
+                    <discretionaryItem id="pi_projects_assignments" name="Projects and assignments" definitionRef="projects_assignments" authorizedRoleRefs="cr_dv_Employee cr_dv_Manager">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Owner: Employee. Adds a PROJECT activity to Activities.]]></text>
+                        </documentation>
+                        <itemControl id="ic_projects_assignments">
+                            <repetitionRule id="rr_projects_assignments" contextRef="Employee">
+                                <condition id="rr_projects_assignments_cond">
+                                    <body><![CDATA[true]]></body>
+                                </condition>
+                            </repetitionRule>
+                        </itemControl>
+                    </discretionaryItem>
+                    <discretionaryItem id="pi_training_learning" name="Training and learning" definitionRef="training_learning" authorizedRoleRefs="cr_dv_Employee cr_dv_Manager">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Owner: Employee. Adds a TRAINING activity to Activities.]]></text>
+                        </documentation>
+                        <itemControl id="ic_training_learning">
+                            <repetitionRule id="rr_training_learning" contextRef="Employee">
+                                <condition id="rr_training_learning_cond">
+                                    <body><![CDATA[true]]></body>
+                                </condition>
+                            </repetitionRule>
+                        </itemControl>
+                    </discretionaryItem>
+                    <discretionaryItem id="pi_coaching_mentoring" name="Coaching and mentoring" definitionRef="coaching_mentoring" authorizedRoleRefs="cr_dv_Employee cr_dv_Manager">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Owner: Employee. Adds a COACHING activity to Activities.]]></text>
+                        </documentation>
+                        <itemControl id="ic_coaching_mentoring">
+                            <repetitionRule id="rr_coaching_mentoring" contextRef="Employee">
+                                <condition id="rr_coaching_mentoring_cond">
+                                    <body><![CDATA[true]]></body>
+                                </condition>
+                            </repetitionRule>
+                        </itemControl>
+                    </discretionaryItem>
+                </planningTable>
+            </stage>
+            <stage id="progress_check" name="Progress check" autoComplete="true">
+                <planItem id="pi_progress_due" name="Progress check due" definitionRef="progress_due"/>
+                <planItem id="pi_request_early_review" name="Request early review" definitionRef="request_early_review">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Starts Review progress now instead of waiting for the timer.]]></text>
+                    </documentation>
+                </planItem>
+                <planItem id="pi_review_progress" name="Review progress" definitionRef="review_progress">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Owner: Manager. Starts on the 14-day timer or on Request early review, whichever comes first.]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_review_progress_0" sentryRef="s_ec_review_progress_0"/>
+                    <entryCriterion id="ec_review_progress_1" sentryRef="s_ec_review_progress_1"/>
+                    <itemControl id="ic_review_progress">
+                        <requiredRule id="rq_review_progress" contextRef="Employee">
+                            <condition id="rq_review_progress_cond">
+                                <body><![CDATA[true]]></body>
+                            </condition>
+                        </requiredRule>
+                    </itemControl>
+                </planItem>
+                <sentry id="s_ec_review_progress_0">
+                    <planItemOnPart id="op_review_progress_0_0" sourceRef="pi_progress_due">
+                        <standardEvent>occur</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+                <sentry id="s_ec_review_progress_1">
+                    <planItemOnPart id="op_review_progress_1_0" sourceRef="pi_request_early_review">
+                        <standardEvent>occur</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+            </stage>
+            <timerEvent id="progress_due" name="Progress check due">
+                <timerExpression id="te_progress_due">
+                    <body><![CDATA[P14D]]></body>
+                </timerExpression>
+                <planItemStartTrigger id="tr_progress_due"/>
+            </timerEvent>
+            <userEvent id="request_early_review" name="Request early review" authorizedRoleRefs="cr_dv_Manager"/>
+            <humanTask id="review_progress" name="Review progress" isBlocking="true" performerRef="cr_dv_Manager">
+                <inputs id="in_review_progress_Plan" name="Plan" bindingRef="Plan"/>
+                <inputs id="in_review_progress_Activities" name="Activities" bindingRef="Activities"/>
+                <inputs id="in_review_progress_ProgressReviews" name="ProgressReviews" bindingRef="ProgressReviews"/>
+                <outputs id="out_review_progress_ProgressReview" name="ProgressReview" bindingRef="ProgressReviews"/>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="ReviewProgress" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_review_progress.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Review progress. Owner: Manager. Starts on the 14-day timer or on Request early review, whichever comes first.]]></text>
+                        </documentation>
+                        <input id="i_Plan__review_progress" name="Plan" typeRef="dv_plan.type"/>
+                        <input id="i_Activities__review_progress" name="Activities" typeRef="dv_activity.type"/>
+                        <input id="i_ProgressReviews__review_progress" name="ProgressReviews" typeRef="dv_progressreview.type"/>
+                        <output id="o_ProgressReview__review_progress" name="ProgressReview" typeRef="dv_progressreview.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Review progress",
+    "description": "Record how the plan is going. Tick \"The plan has been carried out\" to start the evaluation; otherwise the next check is in 14 days.",
+    "type": "object",
+    "required": [
+      "ProgressReview"
+    ],
+    "properties": {
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "oneOf": [
+                    {
+                      "const": "SKILL",
+                      "title": "Skill"
+                    },
+                    {
+                      "const": "KNOWLEDGE",
+                      "title": "Knowledge"
+                    },
+                    {
+                      "const": "BEHAVIOUR",
+                      "title": "Behaviour"
+                    },
+                    {
+                      "const": "CAREER",
+                      "title": "Career"
+                    }
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        },
+        "readOnly": true
+      },
+      "Activities": {
+        "type": "array",
+        "title": "Activities",
+        "readOnly": true,
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "title": "Type",
+              "oneOf": [
+                {
+                  "const": "PROJECT",
+                  "title": "Project"
+                },
+                {
+                  "const": "TRAINING",
+                  "title": "Training"
+                },
+                {
+                  "const": "COACHING",
+                  "title": "Coaching"
+                }
+              ]
+            },
+            "description": {
+              "type": "string",
+              "title": "Activity"
+            },
+            "relatedGoal": {
+              "type": "string",
+              "title": "For goal"
+            },
+            "dueDate": {
+              "type": "string",
+              "title": "Due",
+              "format": "date"
+            },
+            "status": {
+              "type": "string",
+              "title": "Status",
+              "oneOf": [
+                {
+                  "const": "PLANNED",
+                  "title": "Planned"
+                },
+                {
+                  "const": "IN_PROGRESS",
+                  "title": "In progress"
+                },
+                {
+                  "const": "DONE",
+                  "title": "Done"
+                }
+              ]
+            },
+            "outcome": {
+              "type": "string",
+              "title": "Outcome"
+            }
+          }
+        }
+      },
+      "ProgressReviews": {
+        "type": "array",
+        "title": "Earlier reviews",
+        "readOnly": true,
+        "items": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "title": "Review date",
+              "format": "date"
+            },
+            "onTrack": {
+              "type": "boolean",
+              "title": "On track"
+            },
+            "notes": {
+              "type": "string",
+              "title": "Notes"
+            },
+            "adjustments": {
+              "type": "string",
+              "title": "Adjustments to the plan"
+            },
+            "planCompleted": {
+              "type": "boolean",
+              "title": "The plan has been carried out"
+            }
+          }
+        }
+      },
+      "ProgressReview": {
+        "type": "object",
+        "title": "Progress review",
+        "x-on-complete": "addReview",
+        "required": [
+          "date",
+          "notes"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "title": "Review date",
+            "format": "date"
+          },
+          "onTrack": {
+            "type": "boolean",
+            "title": "On track",
+            "default": true
+          },
+          "notes": {
+            "type": "string",
+            "title": "Notes"
+          },
+          "adjustments": {
+            "type": "string",
+            "title": "Adjustments to the plan"
+          },
+          "planCompleted": {
+            "type": "boolean",
+            "title": "The plan has been carried out",
+            "default": false
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Plan",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/period"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/goals",
+            "label": "Goals",
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Activities",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Activities",
+            "label": false,
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Earlier progress reviews",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/ProgressReviews",
+            "label": false,
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "This review",
+        "elements": [
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/ProgressReview/properties/date"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/ProgressReview/properties/onTrack"
+              }
+            ]
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/ProgressReview/properties/notes",
+            "options": {
+              "multi": true
+            }
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/ProgressReview/properties/adjustments",
+            "options": {
+              "multi": true
+            }
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/ProgressReview/properties/planCompleted"
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Save review"
+}</task-model>
+                        <parameterMapping id="pm_review_progress_in_Plan" sourceRef="in_review_progress_Plan" targetRef="i_Plan__review_progress"/>
+                        <parameterMapping id="pm_review_progress_in_Activities" sourceRef="in_review_progress_Activities" targetRef="i_Activities__review_progress">
+                            <transformation id="pm_review_progress_in_Activities_t">
+                                <body><![CDATA[case.file.Activities]]></body>
+                            </transformation>
+                        </parameterMapping>
+                        <parameterMapping id="pm_review_progress_in_ProgressReviews" sourceRef="in_review_progress_ProgressReviews" targetRef="i_ProgressReviews__review_progress">
+                            <transformation id="pm_review_progress_in_ProgressReviews_t">
+                                <body><![CDATA[case.file.ProgressReviews]]></body>
+                            </transformation>
+                        </parameterMapping>
+                        <parameterMapping id="pm_review_progress_out_ProgressReview" sourceRef="o_ProgressReview__review_progress" targetRef="out_review_progress_ProgressReview"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <milestone id="plan_performed" name="Plan performed"/>
+            <humanTask id="projects_assignments" name="Projects and assignments" isBlocking="true" performerRef="cr_dv_Employee">
+                <inputs id="in_projects_assignments_Plan" name="Plan" bindingRef="Plan"/>
+                <outputs id="out_projects_assignments_Activity" name="Activity" bindingRef="Activities"/>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="ProjectsAssignments" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_projects_assignments.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Projects and assignments. Owner: Employee. Adds a PROJECT activity to Activities.]]></text>
+                        </documentation>
+                        <input id="i_Plan__projects_assignments" name="Plan" typeRef="dv_plan.type"/>
+                        <output id="o_Activity__projects_assignments" name="Activity" typeRef="dv_activity.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Projects and assignments",
+    "description": "A project or assignment that helps you reach a goal.",
+    "type": "object",
+    "required": [
+      "Activity"
+    ],
+    "properties": {
+      "Activity": {
+        "type": "object",
+        "title": "Activity",
+        "x-on-complete": "addActivity",
+        "required": [
+          "description",
+          "status"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "oneOf": [
+              {
+                "const": "PROJECT",
+                "title": "Project"
+              }
+            ],
+            "default": "PROJECT"
+          },
+          "description": {
+            "type": "string",
+            "title": "What will you do?"
+          },
+          "relatedGoal": {
+            "type": "string",
+            "title": "For goal",
+            "x-options": "goals"
+          },
+          "dueDate": {
+            "type": "string",
+            "title": "Due date",
+            "format": "date"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "oneOf": [
+              {
+                "const": "PLANNED",
+                "title": "Planned"
+              },
+              {
+                "const": "IN_PROGRESS",
+                "title": "In progress"
+              },
+              {
+                "const": "DONE",
+                "title": "Done"
+              }
+            ],
+            "default": "PLANNED"
+          },
+          "outcome": {
+            "type": "string",
+            "title": "Outcome"
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Activity",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Activity/properties/description",
+            "options": {
+              "multi": true
+            }
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/type"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/relatedGoal"
+              }
+            ]
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/dueDate"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/status"
+              }
+            ]
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Activity/properties/outcome",
+            "options": {
+              "multi": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Save activity"
+}</task-model>
+                        <parameterMapping id="pm_projects_assignments_in_Plan" sourceRef="in_projects_assignments_Plan" targetRef="i_Plan__projects_assignments"/>
+                        <parameterMapping id="pm_projects_assignments_out_Activity" sourceRef="o_Activity__projects_assignments" targetRef="out_projects_assignments_Activity"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <humanTask id="training_learning" name="Training and learning" isBlocking="true" performerRef="cr_dv_Employee">
+                <inputs id="in_training_learning_Plan" name="Plan" bindingRef="Plan"/>
+                <outputs id="out_training_learning_Activity" name="Activity" bindingRef="Activities"/>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="TrainingLearning" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_training_learning.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Training and learning. Owner: Employee. Adds a TRAINING activity to Activities.]]></text>
+                        </documentation>
+                        <input id="i_Plan__training_learning" name="Plan" typeRef="dv_plan.type"/>
+                        <output id="o_Activity__training_learning" name="Activity" typeRef="dv_activity.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Training and learning",
+    "description": "A course, training or study that helps you reach a goal.",
+    "type": "object",
+    "required": [
+      "Activity"
+    ],
+    "properties": {
+      "Activity": {
+        "type": "object",
+        "title": "Activity",
+        "x-on-complete": "addActivity",
+        "required": [
+          "description",
+          "status"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "oneOf": [
+              {
+                "const": "TRAINING",
+                "title": "Training"
+              }
+            ],
+            "default": "TRAINING"
+          },
+          "description": {
+            "type": "string",
+            "title": "What will you do?"
+          },
+          "relatedGoal": {
+            "type": "string",
+            "title": "For goal",
+            "x-options": "goals"
+          },
+          "dueDate": {
+            "type": "string",
+            "title": "Due date",
+            "format": "date"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "oneOf": [
+              {
+                "const": "PLANNED",
+                "title": "Planned"
+              },
+              {
+                "const": "IN_PROGRESS",
+                "title": "In progress"
+              },
+              {
+                "const": "DONE",
+                "title": "Done"
+              }
+            ],
+            "default": "PLANNED"
+          },
+          "outcome": {
+            "type": "string",
+            "title": "Outcome"
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Activity",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Activity/properties/description",
+            "options": {
+              "multi": true
+            }
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/type"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/relatedGoal"
+              }
+            ]
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/dueDate"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/status"
+              }
+            ]
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Activity/properties/outcome",
+            "options": {
+              "multi": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Save activity"
+}</task-model>
+                        <parameterMapping id="pm_training_learning_in_Plan" sourceRef="in_training_learning_Plan" targetRef="i_Plan__training_learning"/>
+                        <parameterMapping id="pm_training_learning_out_Activity" sourceRef="o_Activity__training_learning" targetRef="out_training_learning_Activity"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <humanTask id="coaching_mentoring" name="Coaching and mentoring" isBlocking="true" performerRef="cr_dv_Employee">
+                <inputs id="in_coaching_mentoring_Plan" name="Plan" bindingRef="Plan"/>
+                <outputs id="out_coaching_mentoring_Activity" name="Activity" bindingRef="Activities"/>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="CoachingMentoring" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_coaching_mentoring.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Coaching and mentoring. Owner: Employee. Adds a COACHING activity to Activities.]]></text>
+                        </documentation>
+                        <input id="i_Plan__coaching_mentoring" name="Plan" typeRef="dv_plan.type"/>
+                        <output id="o_Activity__coaching_mentoring" name="Activity" typeRef="dv_activity.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Coaching and mentoring",
+    "description": "Coaching or mentoring that helps you reach a goal.",
+    "type": "object",
+    "required": [
+      "Activity"
+    ],
+    "properties": {
+      "Activity": {
+        "type": "object",
+        "title": "Activity",
+        "x-on-complete": "addActivity",
+        "required": [
+          "description",
+          "status"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "oneOf": [
+              {
+                "const": "COACHING",
+                "title": "Coaching"
+              }
+            ],
+            "default": "COACHING"
+          },
+          "description": {
+            "type": "string",
+            "title": "What will you do?"
+          },
+          "relatedGoal": {
+            "type": "string",
+            "title": "For goal",
+            "x-options": "goals"
+          },
+          "dueDate": {
+            "type": "string",
+            "title": "Due date",
+            "format": "date"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "oneOf": [
+              {
+                "const": "PLANNED",
+                "title": "Planned"
+              },
+              {
+                "const": "IN_PROGRESS",
+                "title": "In progress"
+              },
+              {
+                "const": "DONE",
+                "title": "Done"
+              }
+            ],
+            "default": "PLANNED"
+          },
+          "outcome": {
+            "type": "string",
+            "title": "Outcome"
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Activity",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Activity/properties/description",
+            "options": {
+              "multi": true
+            }
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/type"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/relatedGoal"
+              }
+            ]
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/dueDate"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/status"
+              }
+            ]
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Activity/properties/outcome",
+            "options": {
+              "multi": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Save activity"
+}</task-model>
+                        <parameterMapping id="pm_coaching_mentoring_in_Plan" sourceRef="in_coaching_mentoring_Plan" targetRef="i_Plan__coaching_mentoring"/>
+                        <parameterMapping id="pm_coaching_mentoring_out_Activity" sourceRef="o_Activity__coaching_mentoring" targetRef="out_coaching_mentoring_Activity"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <stage id="evaluate" name="3 · Evaluate plan" autoComplete="true">
+                <planItem id="pi_self_assessment" name="Self-assessment" definitionRef="self_assessment">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Owner: Employee. The employee rates their own progress first, goal by goal.]]></text>
+                    </documentation>
+                </planItem>
+                <planItem id="pi_evaluate_results" name="Evaluate &amp; document results" definitionRef="evaluate_results">
+                    <documentation textFormat="text/plain">
+                        <text><![CDATA[Owner: Manager. On complete the devplan backend archives the finished round into PreviousRounds.]]></text>
+                    </documentation>
+                    <entryCriterion id="ec_evaluate_results_0" sentryRef="s_ec_evaluate_results_0"/>
+                </planItem>
+                <sentry id="s_ec_evaluate_results_0">
+                    <planItemOnPart id="op_evaluate_results_0_0" sourceRef="pi_self_assessment">
+                        <standardEvent>complete</standardEvent>
+                    </planItemOnPart>
+                </sentry>
+            </stage>
+            <humanTask id="self_assessment" name="Self-assessment" isBlocking="true" performerRef="cr_dv_Employee">
+                <inputs id="in_self_assessment_Plan" name="Plan" bindingRef="Plan"/>
+                <inputs id="in_self_assessment_Activities" name="Activities" bindingRef="Activities"/>
+                <inputs id="in_self_assessment_ProgressReviews" name="ProgressReviews" bindingRef="ProgressReviews"/>
+                <inputs id="in_self_assessment_SelfAssessment" name="SelfAssessment" bindingRef="SelfAssessment"/>
+                <outputs id="out_self_assessment_SelfAssessment" name="SelfAssessment" bindingRef="SelfAssessment">
+                    <bindingRefinement>
+                        <body><![CDATA[replace]]></body>
+                    </bindingRefinement>
+                </outputs>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="SelfAssessment" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_self_assessment.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Self-assessment. Owner: Employee. The employee rates their own progress first, goal by goal.]]></text>
+                        </documentation>
+                        <input id="i_Plan__self_assessment" name="Plan" typeRef="dv_plan.type"/>
+                        <input id="i_Activities__self_assessment" name="Activities" typeRef="dv_activity.type"/>
+                        <input id="i_ProgressReviews__self_assessment" name="ProgressReviews" typeRef="dv_progressreview.type"/>
+                        <input id="i_SelfAssessment__self_assessment" name="SelfAssessment" typeRef="dv_selfassessment.type"/>
+                        <output id="o_SelfAssessment__self_assessment" name="SelfAssessment" typeRef="dv_selfassessment.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Self-assessment",
+    "description": "Look back on your goals: how did each one go? Your manager reads this before the evaluation.",
+    "type": "object",
+    "required": [
+      "SelfAssessment"
+    ],
+    "properties": {
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "oneOf": [
+                    {
+                      "const": "SKILL",
+                      "title": "Skill"
+                    },
+                    {
+                      "const": "KNOWLEDGE",
+                      "title": "Knowledge"
+                    },
+                    {
+                      "const": "BEHAVIOUR",
+                      "title": "Behaviour"
+                    },
+                    {
+                      "const": "CAREER",
+                      "title": "Career"
+                    }
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        },
+        "readOnly": true
+      },
+      "Activities": {
+        "type": "array",
+        "title": "Activities",
+        "readOnly": true,
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "title": "Type",
+              "oneOf": [
+                {
+                  "const": "PROJECT",
+                  "title": "Project"
+                },
+                {
+                  "const": "TRAINING",
+                  "title": "Training"
+                },
+                {
+                  "const": "COACHING",
+                  "title": "Coaching"
+                }
+              ]
+            },
+            "description": {
+              "type": "string",
+              "title": "Activity"
+            },
+            "relatedGoal": {
+              "type": "string",
+              "title": "For goal"
+            },
+            "dueDate": {
+              "type": "string",
+              "title": "Due",
+              "format": "date"
+            },
+            "status": {
+              "type": "string",
+              "title": "Status",
+              "oneOf": [
+                {
+                  "const": "PLANNED",
+                  "title": "Planned"
+                },
+                {
+                  "const": "IN_PROGRESS",
+                  "title": "In progress"
+                },
+                {
+                  "const": "DONE",
+                  "title": "Done"
+                }
+              ]
+            },
+            "outcome": {
+              "type": "string",
+              "title": "Outcome"
+            }
+          }
+        }
+      },
+      "ProgressReviews": {
+        "type": "array",
+        "title": "Earlier reviews",
+        "readOnly": true,
+        "items": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "title": "Review date",
+              "format": "date"
+            },
+            "onTrack": {
+              "type": "boolean",
+              "title": "On track"
+            },
+            "notes": {
+              "type": "string",
+              "title": "Notes"
+            },
+            "adjustments": {
+              "type": "string",
+              "title": "Adjustments to the plan"
+            },
+            "planCompleted": {
+              "type": "boolean",
+              "title": "The plan has been carried out"
+            }
+          }
+        }
+      },
+      "SelfAssessment": {
+        "type": "object",
+        "title": "Self-assessment",
+        "properties": {
+          "goalResults": {
+            "type": "array",
+            "title": "Result per goal",
+            "items": {
+              "type": "object",
+              "properties": {
+                "goalTitle": {
+                  "type": "string",
+                  "title": "Goal",
+                  "readOnly": true
+                },
+                "result": {
+                  "type": "string",
+                  "title": "Result",
+                  "oneOf": [
+                    {
+                      "const": "EXCEEDED",
+                      "title": "Exceeded"
+                    },
+                    {
+                      "const": "MET",
+                      "title": "Met"
+                    },
+                    {
+                      "const": "PARTIALLY_MET",
+                      "title": "Partially met"
+                    },
+                    {
+                      "const": "NOT_MET",
+                      "title": "Not met"
+                    }
+                  ]
+                },
+                "comments": {
+                  "type": "string",
+                  "title": "Comments"
+                }
+              },
+              "required": [
+                "result"
+              ]
+            }
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          }
+        },
+        "x-on-complete": "submitSelfAssessment",
+        "required": [
+          "goalResults",
+          "summary"
+        ]
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Plan",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/period"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/goals",
+            "label": "Goals",
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Activities",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Activities",
+            "label": false,
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Earlier progress reviews",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/ProgressReviews",
+            "label": false,
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Your assessment",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/SelfAssessment/properties/goalResults",
+            "label": "Result per goal",
+            "options": {
+              "table": true,
+              "disableAdd": true,
+              "disableRemove": true
+            }
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/SelfAssessment/properties/summary",
+            "options": {
+              "multi": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Send to manager"
+}</task-model>
+                        <parameterMapping id="pm_self_assessment_in_Plan" sourceRef="in_self_assessment_Plan" targetRef="i_Plan__self_assessment"/>
+                        <parameterMapping id="pm_self_assessment_in_Activities" sourceRef="in_self_assessment_Activities" targetRef="i_Activities__self_assessment">
+                            <transformation id="pm_self_assessment_in_Activities_t">
+                                <body><![CDATA[case.file.Activities]]></body>
+                            </transformation>
+                        </parameterMapping>
+                        <parameterMapping id="pm_self_assessment_in_ProgressReviews" sourceRef="in_self_assessment_ProgressReviews" targetRef="i_ProgressReviews__self_assessment">
+                            <transformation id="pm_self_assessment_in_ProgressReviews_t">
+                                <body><![CDATA[case.file.ProgressReviews]]></body>
+                            </transformation>
+                        </parameterMapping>
+                        <parameterMapping id="pm_self_assessment_in_SelfAssessment" sourceRef="in_self_assessment_SelfAssessment" targetRef="i_SelfAssessment__self_assessment">
+                            <transformation id="pm_self_assessment_in_SelfAssessment_t">
+                                <body><![CDATA[{'goalResults': case.file.Plan.goals.![{'goalTitle': title}]}]]></body>
+                            </transformation>
+                        </parameterMapping>
+                        <parameterMapping id="pm_self_assessment_out_SelfAssessment" sourceRef="o_SelfAssessment__self_assessment" targetRef="out_self_assessment_SelfAssessment"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <humanTask id="evaluate_results" name="Evaluate &amp; document results" isBlocking="true" performerRef="cr_dv_Manager">
+                <inputs id="in_evaluate_results_Plan" name="Plan" bindingRef="Plan"/>
+                <inputs id="in_evaluate_results_Activities" name="Activities" bindingRef="Activities"/>
+                <inputs id="in_evaluate_results_ProgressReviews" name="ProgressReviews" bindingRef="ProgressReviews"/>
+                <inputs id="in_evaluate_results_SelfAssessment" name="SelfAssessment" bindingRef="SelfAssessment"/>
+                <inputs id="in_evaluate_results_Evaluation" name="Evaluation" bindingRef="Evaluation"/>
+                <outputs id="out_evaluate_results_Evaluation" name="Evaluation" bindingRef="Evaluation">
+                    <bindingRefinement>
+                        <body><![CDATA[replace]]></body>
+                    </bindingRefinement>
+                </outputs>
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation name="EvaluateResults" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="dv_evaluate_results.humantask">
+                        <documentation textFormat="text/plain">
+                            <text><![CDATA[Evaluate & document results. Owner: Manager. Also copies the finished round (plan, approval, activities, reviews, self-assessment, evaluation) into PreviousRounds.]]></text>
+                        </documentation>
+                        <input id="i_Plan__evaluate_results" name="Plan" typeRef="dv_plan.type"/>
+                        <input id="i_Activities__evaluate_results" name="Activities" typeRef="dv_activity.type"/>
+                        <input id="i_ProgressReviews__evaluate_results" name="ProgressReviews" typeRef="dv_progressreview.type"/>
+                        <input id="i_SelfAssessment__evaluate_results" name="SelfAssessment" typeRef="dv_selfassessment.type"/>
+                        <input id="i_Evaluation__evaluate_results" name="Evaluation" typeRef="dv_evaluation.type"/>
+                        <output id="o_Evaluation__evaluate_results" name="Evaluation" typeRef="dv_evaluation.type"/>
+                        <task-model>{
+  "schema": {
+    "title": "Evaluate &amp; document results",
+    "description": "Evaluate the plan with the employee and record the results. Choose whether a new plan round follows.",
+    "type": "object",
+    "required": [
+      "Evaluation"
+    ],
+    "properties": {
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "oneOf": [
+                    {
+                      "const": "SKILL",
+                      "title": "Skill"
+                    },
+                    {
+                      "const": "KNOWLEDGE",
+                      "title": "Knowledge"
+                    },
+                    {
+                      "const": "BEHAVIOUR",
+                      "title": "Behaviour"
+                    },
+                    {
+                      "const": "CAREER",
+                      "title": "Career"
+                    }
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        },
+        "readOnly": true
+      },
+      "Activities": {
+        "type": "array",
+        "title": "Activities",
+        "readOnly": true,
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "title": "Type",
+              "oneOf": [
+                {
+                  "const": "PROJECT",
+                  "title": "Project"
+                },
+                {
+                  "const": "TRAINING",
+                  "title": "Training"
+                },
+                {
+                  "const": "COACHING",
+                  "title": "Coaching"
+                }
+              ]
+            },
+            "description": {
+              "type": "string",
+              "title": "Activity"
+            },
+            "relatedGoal": {
+              "type": "string",
+              "title": "For goal"
+            },
+            "dueDate": {
+              "type": "string",
+              "title": "Due",
+              "format": "date"
+            },
+            "status": {
+              "type": "string",
+              "title": "Status",
+              "oneOf": [
+                {
+                  "const": "PLANNED",
+                  "title": "Planned"
+                },
+                {
+                  "const": "IN_PROGRESS",
+                  "title": "In progress"
+                },
+                {
+                  "const": "DONE",
+                  "title": "Done"
+                }
+              ]
+            },
+            "outcome": {
+              "type": "string",
+              "title": "Outcome"
+            }
+          }
+        }
+      },
+      "ProgressReviews": {
+        "type": "array",
+        "title": "Earlier reviews",
+        "readOnly": true,
+        "items": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "title": "Review date",
+              "format": "date"
+            },
+            "onTrack": {
+              "type": "boolean",
+              "title": "On track"
+            },
+            "notes": {
+              "type": "string",
+              "title": "Notes"
+            },
+            "adjustments": {
+              "type": "string",
+              "title": "Adjustments to the plan"
+            },
+            "planCompleted": {
+              "type": "boolean",
+              "title": "The plan has been carried out"
+            }
+          }
+        }
+      },
+      "SelfAssessment": {
+        "type": "object",
+        "title": "Self-assessment",
+        "properties": {
+          "goalResults": {
+            "type": "array",
+            "title": "Result per goal",
+            "items": {
+              "type": "object",
+              "properties": {
+                "goalTitle": {
+                  "type": "string",
+                  "title": "Goal",
+                  "readOnly": true
+                },
+                "result": {
+                  "type": "string",
+                  "title": "Result",
+                  "oneOf": [
+                    {
+                      "const": "EXCEEDED",
+                      "title": "Exceeded"
+                    },
+                    {
+                      "const": "MET",
+                      "title": "Met"
+                    },
+                    {
+                      "const": "PARTIALLY_MET",
+                      "title": "Partially met"
+                    },
+                    {
+                      "const": "NOT_MET",
+                      "title": "Not met"
+                    }
+                  ]
+                },
+                "comments": {
+                  "type": "string",
+                  "title": "Comments"
+                }
+              }
+            }
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          }
+        },
+        "readOnly": true
+      },
+      "Evaluation": {
+        "type": "object",
+        "title": "Evaluation",
+        "x-on-complete": "closeRound",
+        "required": [
+          "outcome",
+          "goalResults",
+          "summary"
+        ],
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "title": "Overall outcome",
+            "oneOf": [
+              {
+                "const": "MET",
+                "title": "Met"
+              },
+              {
+                "const": "PARTIALLY_MET",
+                "title": "Partially met"
+              },
+              {
+                "const": "NOT_MET",
+                "title": "Not met"
+              }
+            ]
+          },
+          "goalResults": {
+            "type": "array",
+            "title": "Result per goal",
+            "items": {
+              "type": "object",
+              "properties": {
+                "goalTitle": {
+                  "type": "string",
+                  "title": "Goal",
+                  "readOnly": true
+                },
+                "result": {
+                  "type": "string",
+                  "title": "Result",
+                  "oneOf": [
+                    {
+                      "const": "EXCEEDED",
+                      "title": "Exceeded"
+                    },
+                    {
+                      "const": "MET",
+                      "title": "Met"
+                    },
+                    {
+                      "const": "PARTIALLY_MET",
+                      "title": "Partially met"
+                    },
+                    {
+                      "const": "NOT_MET",
+                      "title": "Not met"
+                    }
+                  ]
+                },
+                "comments": {
+                  "type": "string",
+                  "title": "Comments"
+                }
+              },
+              "required": [
+                "result"
+              ]
+            }
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "furtherDevelopment": {
+            "type": "boolean",
+            "title": "Start a new plan round",
+            "default": false
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Plan",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/period"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/goals",
+            "label": "Goals",
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Activities",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Activities",
+            "label": false,
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Earlier progress reviews",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/ProgressReviews",
+            "label": false,
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Employee's self-assessment",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/SelfAssessment/properties/goalResults",
+            "label": "Result per goal",
+            "options": {
+              "table": true
+            }
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/SelfAssessment/properties/summary",
+            "options": {
+              "multi": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Evaluation",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Evaluation/properties/outcome"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Evaluation/properties/goalResults",
+            "label": "Result per goal",
+            "options": {
+              "table": true,
+              "disableAdd": true,
+              "disableRemove": true
+            }
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Evaluation/properties/summary",
+            "options": {
+              "multi": true
+            }
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Evaluation/properties/furtherDevelopment"
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Save evaluation"
+}</task-model>
+                        <parameterMapping id="pm_evaluate_results_in_Plan" sourceRef="in_evaluate_results_Plan" targetRef="i_Plan__evaluate_results"/>
+                        <parameterMapping id="pm_evaluate_results_in_Activities" sourceRef="in_evaluate_results_Activities" targetRef="i_Activities__evaluate_results">
+                            <transformation id="pm_evaluate_results_in_Activities_t">
+                                <body><![CDATA[case.file.Activities]]></body>
+                            </transformation>
+                        </parameterMapping>
+                        <parameterMapping id="pm_evaluate_results_in_ProgressReviews" sourceRef="in_evaluate_results_ProgressReviews" targetRef="i_ProgressReviews__evaluate_results">
+                            <transformation id="pm_evaluate_results_in_ProgressReviews_t">
+                                <body><![CDATA[case.file.ProgressReviews]]></body>
+                            </transformation>
+                        </parameterMapping>
+                        <parameterMapping id="pm_evaluate_results_in_SelfAssessment" sourceRef="in_evaluate_results_SelfAssessment" targetRef="i_SelfAssessment__evaluate_results"/>
+                        <parameterMapping id="pm_evaluate_results_in_Evaluation" sourceRef="in_evaluate_results_Evaluation" targetRef="i_Evaluation__evaluate_results">
+                            <transformation id="pm_evaluate_results_in_Evaluation_t">
+                                <body><![CDATA[{'goalResults': case.file.Plan.goals.![{'goalTitle': title}]}]]></body>
+                            </transformation>
+                        </parameterMapping>
+                        <parameterMapping id="pm_evaluate_results_out_Evaluation" sourceRef="o_Evaluation__evaluate_results" targetRef="out_evaluate_results_Evaluation"/>
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <milestone id="plan_closed" name="Plan closed"/>
+        </casePlanModel>
+        <caseRoles cafienne:caseTeamRef="development.caseteam">
+            <role id="cr_dv_Employee" name="Employee"/>
+            <role id="cr_dv_Manager" name="Manager"/>
+            <role id="cr_dv_HR" name="HR"/>
+            <role id="cr_dv_ITAdmin" name="ITAdmin"/>
+        </caseRoles>
+        <input id="in_Employee" name="Employee" bindingRef="Employee"/>
+        <input id="in_Onboarding" name="Onboarding" bindingRef="Onboarding"/>
+        <extensionElements mustUnderstand="false">
+            <cafienne:start-case-model xmlns:cafienne="org.cafienne">{
+  "schema": {
+    "type": "object",
+    "required": [
+      "Employee"
+    ],
+    "properties": {
+      "Employee": {
+        "type": "object",
+        "title": "Employee",
+        "properties": {
+          "employeeId": {
+            "type": "string",
+            "title": "Employee number"
+          },
+          "managerId": {
+            "type": "string",
+            "title": "Manager number"
+          },
+          "trigger": {
+            "type": "string",
+            "title": "Reason for the plan",
+            "enum": [
+              "ANNUAL_REVIEW",
+              "NEW_ROLE",
+              "CAREER_GROWTH",
+              "PERFORMANCE_IMPROVEMENT",
+              "ONBOARDING"
+            ],
+            "enumNames": [
+              "Annual review",
+              "New role",
+              "Career growth",
+              "Performance improvement",
+              "Onboarding"
+            ]
+          }
+        },
+        "required": [
+          "employeeId",
+          "managerId",
+          "trigger"
+        ]
+      }
+    }
+  }
+}</cafienne:start-case-model>
+        </extensionElements>
+    </case>
+    <process id="dv_mail_it_request.process" name="dv_mail_it_request.process" implementationType="http://www.omg.org/spec/CMMN/ProcessType/Unspecified">
+        <documentation textFormat="text/plain">
+            <text><![CDATA[Tells the IT admin that a new equipment request is waiting. The engine only triggers this with Employee.employeeId; the devplan backend resolves the IT admin's address and the employee's name from the employee directory (DB) and sends the mail through the CaseFabric mailcatcher (http://localhost:1080).]]></text>
+        </documentation>
+        <input id="employeeId" name="employeeId"/>
+        <extensionElements mustUnderstand="false">
+            <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.processtask.implementation.http.HTTPCallDefinition">
+                <url>http://devplan-backend:8080/internal/mail/it-request</url>
+                <method>POST</method>
+                <post-content><![CDATA[{"employeeId": "${employeeId}"}]]></post-content>
+                <http-headers>
+                    <http-header name="Content-Type">application/json</http-header>
+                    <http-header name="X-Mail-Token">devplan-mail-relay</http-header>
+                </http-headers>
+            </cafienne:implementation>
+        </extensionElements>
+    </process>
+    <process id="dv_mail_onboarded.process" name="dv_mail_onboarded.process" implementationType="http://www.omg.org/spec/CMMN/ProcessType/Unspecified">
+        <documentation textFormat="text/plain">
+            <text><![CDATA[Tells HR (and the manager, in cc) that the new joiner is onboarded. The engine only triggers this with Employee.employeeId; the devplan backend resolves HR's and the manager's addresses and the employee's name from the employee directory (DB) and sends the mail through the CaseFabric mailcatcher (http://localhost:1080).]]></text>
+        </documentation>
+        <input id="employeeId" name="employeeId"/>
+        <extensionElements mustUnderstand="false">
+            <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.processtask.implementation.http.HTTPCallDefinition">
+                <url>http://devplan-backend:8080/internal/mail/onboarded</url>
+                <method>POST</method>
+                <post-content><![CDATA[{"employeeId": "${employeeId}"}]]></post-content>
+                <http-headers>
+                    <http-header name="Content-Type">application/json</http-header>
+                    <http-header name="X-Mail-Token">devplan-mail-relay</http-header>
+                </http-headers>
+            </cafienne:implementation>
+        </extensionElements>
+    </process>
+    <CMMNDI>
+        <CMMNDiagram>
+            <CMMNShape cmmnElementRef="cm_development.case_development_0">
+                <Bounds x="20" y="10" width="1554" height="1400"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_development_cycle">
+                <Bounds x="60" y="455" width="1474" height="895"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_development_plan">
+                <Bounds x="120" y="490" width="1394" height="820"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="xc_development_plan_0">
+                <Bounds x="1508" y="510" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_start_plan">
+                <Bounds x="180" y="640" width="32" height="32"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_plan">
+                <Bounds x="290" y="530" width="640" height="245"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_plan_0">
+                <Bounds x="284" y="540" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_plan_1">
+                <Bounds x="284" y="680" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_define_plan">
+                <Bounds x="330" y="580" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_approve_plan">
+                <Bounds x="540" y="575" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_approve_plan_0">
+                <Bounds x="534" y="585" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_approve_plan_1">
+                <Bounds x="534" y="609" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_revise_plan">
+                <Bounds x="740" y="570" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_revise_plan_0">
+                <Bounds x="734" y="580" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_plan_approved">
+                <Bounds x="550" y="700" width="120" height="40"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_plan_approved_0">
+                <Bounds x="544" y="710" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_perform">
+                <Bounds x="160" y="830" width="814" height="360"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_perform_0">
+                <Bounds x="360" y="820" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="xc_perform_0">
+                <Bounds x="968" y="840" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pt_perform">
+                <Bounds x="210" y="821" width="24" height="16"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_progress_check">
+                <Bounds x="200" y="875" width="544" height="155"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_progress_due">
+                <Bounds x="250" y="920" width="32" height="32"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_request_early_review">
+                <Bounds x="402" y="920" width="32" height="32"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_review_progress">
+                <Bounds x="560" y="910" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_review_progress_0">
+                <Bounds x="554" y="920" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_review_progress_1">
+                <Bounds x="554" y="944" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_plan_performed">
+                <Bounds x="800" y="930" width="120" height="40"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_plan_performed_0">
+                <Bounds x="794" y="940" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_projects_assignments">
+                <Bounds x="210" y="1070" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_training_learning">
+                <Bounds x="380" y="1070" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_coaching_mentoring">
+                <Bounds x="550" y="1070" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_evaluate">
+                <Bounds x="1044" y="830" width="430" height="155"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_evaluate_0">
+                <Bounds x="1038" y="840" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_self_assessment">
+                <Bounds x="1080" y="870" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_evaluate_results">
+                <Bounds x="1280" y="870" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_evaluate_results_0">
+                <Bounds x="1274" y="880" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_plan_closed">
+                <Bounds x="1350" y="700" width="120" height="40"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_plan_closed_0">
+                <Bounds x="1344" y="710" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_onboarding">
+                <Bounds x="60" y="60" width="1000" height="350"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_onboarding_0">
+                <Bounds x="54" y="170" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="xc_onboarding_0">
+                <Bounds x="1054" y="170" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_employee_details">
+                <Bounds x="100" y="120" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_it_request">
+                <Bounds x="300" y="120" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_it_request_0">
+                <Bounds x="294" y="150" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_equipment_request">
+                <Bounds x="500" y="120" width="140" height="80"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_equipment_request_0">
+                <Bounds x="494" y="150" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_complete_onboarding">
+                <Bounds x="740" y="240" width="32" height="32"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_employee_onboarded">
+                <Bounds x="880" y="230" width="120" height="40"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_employee_onboarded_0">
+                <Bounds x="874" y="240" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_mail_it_request">
+                <Bounds x="300" y="295" width="140" height="70"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_mail_it_request_0">
+                <Bounds x="364" y="285" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_mail_onboarded_1">
+                <Bounds x="1114" y="235" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_mail_onboarded">
+                <Bounds x="1120" y="190" width="160" height="70"/>
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="ec_mail_onboarded_0">
+                <Bounds x="1114" y="200" width="12" height="20"/>
+            </CMMNShape>
+            <CMMNEdge sourceCMMNElementRef="pi_plan_closed" targetCMMNElementRef="xc_development_plan_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_start_plan" targetCMMNElementRef="ec_plan_0">
+                <waypoint x="290" y="620"/>
+            </CMMNEdge>
+            <CMMNEdge sourceCMMNElementRef="pi_evaluate_results" targetCMMNElementRef="ec_plan_1"/>
+            <CMMNEdge sourceCMMNElementRef="pi_define_plan" targetCMMNElementRef="ec_approve_plan_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_revise_plan" targetCMMNElementRef="ec_approve_plan_1"/>
+            <CMMNEdge sourceCMMNElementRef="pi_approve_plan" targetCMMNElementRef="ec_revise_plan_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_approve_plan" targetCMMNElementRef="ec_plan_approved_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_plan_approved" targetCMMNElementRef="ec_perform_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_plan_performed" targetCMMNElementRef="xc_perform_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_progress_due" targetCMMNElementRef="ec_review_progress_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_request_early_review" targetCMMNElementRef="ec_review_progress_1"/>
+            <CMMNEdge sourceCMMNElementRef="pi_review_progress" targetCMMNElementRef="ec_plan_performed_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_plan_performed" targetCMMNElementRef="ec_evaluate_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_self_assessment" targetCMMNElementRef="ec_evaluate_results_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_evaluate_results" targetCMMNElementRef="ec_plan_closed_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_employee_details" targetCMMNElementRef="ec_it_request_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_it_request" targetCMMNElementRef="ec_equipment_request_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_complete_onboarding" targetCMMNElementRef="ec_employee_onboarded_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_employee_onboarded" targetCMMNElementRef="xc_onboarding_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_it_request" targetCMMNElementRef="ec_mail_it_request_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_onboarding" targetCMMNElementRef="ec_mail_onboarded_0"/>
+            <CMMNEdge sourceCMMNElementRef="pi_onboarding" targetCMMNElementRef="ec_mail_onboarded_1"/>
+        </CMMNDiagram>
+    </CMMNDI>
+</definitions>

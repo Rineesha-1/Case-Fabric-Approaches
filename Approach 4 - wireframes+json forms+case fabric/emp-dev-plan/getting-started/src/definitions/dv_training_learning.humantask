@@ -1,0 +1,132 @@
+<humanTask xmlns="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:cafienne="org.cafienne">
+    <cafienne:implementation name="TrainingLearning" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
+        <documentation textFormat="text/plain">
+            <text><![CDATA[Training and learning. Owner: Employee. Adds a TRAINING activity to Activities.]]></text>
+        </documentation>
+        <input id="i_Plan__training_learning" name="Plan" typeRef="dv_plan.type"/>
+        <output id="o_Activity__training_learning" name="Activity" typeRef="dv_activity.type"/>
+        <task-model>{
+  "schema": {
+    "title": "Training and learning",
+    "description": "A course, training or study that helps you reach a goal.",
+    "type": "object",
+    "required": [
+      "Activity"
+    ],
+    "properties": {
+      "Activity": {
+        "type": "object",
+        "title": "Activity",
+        "x-on-complete": "addActivity",
+        "required": [
+          "description",
+          "status"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "oneOf": [
+              {
+                "const": "TRAINING",
+                "title": "Training"
+              }
+            ],
+            "default": "TRAINING"
+          },
+          "description": {
+            "type": "string",
+            "title": "What will you do?"
+          },
+          "relatedGoal": {
+            "type": "string",
+            "title": "For goal",
+            "x-options": "goals"
+          },
+          "dueDate": {
+            "type": "string",
+            "title": "Due date",
+            "format": "date"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "oneOf": [
+              {
+                "const": "PLANNED",
+                "title": "Planned"
+              },
+              {
+                "const": "IN_PROGRESS",
+                "title": "In progress"
+              },
+              {
+                "const": "DONE",
+                "title": "Done"
+              }
+            ],
+            "default": "PLANNED"
+          },
+          "outcome": {
+            "type": "string",
+            "title": "Outcome"
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Activity",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Activity/properties/description",
+            "options": {
+              "multi": true
+            }
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/type"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/relatedGoal"
+              }
+            ]
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/dueDate"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/Activity/properties/status"
+              }
+            ]
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Activity/properties/outcome",
+            "options": {
+              "multi": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Save activity"
+}</task-model>
+    </cafienne:implementation>
+</humanTask>

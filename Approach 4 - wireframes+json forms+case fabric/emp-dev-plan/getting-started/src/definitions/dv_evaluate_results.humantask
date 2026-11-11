@@ -1,0 +1,427 @@
+<humanTask xmlns="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:cafienne="org.cafienne">
+    <cafienne:implementation name="EvaluateResults" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
+        <documentation textFormat="text/plain">
+            <text><![CDATA[Evaluate & document results. Owner: Manager. Also copies the finished round (plan, approval, activities, reviews, self-assessment, evaluation) into PreviousRounds.]]></text>
+        </documentation>
+        <input id="i_Plan__evaluate_results" name="Plan" typeRef="dv_plan.type"/>
+        <input id="i_Activities__evaluate_results" name="Activities" typeRef="dv_activity.type"/>
+        <input id="i_ProgressReviews__evaluate_results" name="ProgressReviews" typeRef="dv_progressreview.type"/>
+        <input id="i_SelfAssessment__evaluate_results" name="SelfAssessment" typeRef="dv_selfassessment.type"/>
+        <input id="i_Evaluation__evaluate_results" name="Evaluation" typeRef="dv_evaluation.type"/>
+        <output id="o_Evaluation__evaluate_results" name="Evaluation" typeRef="dv_evaluation.type"/>
+        <task-model>{
+  "schema": {
+    "title": "Evaluate &amp; document results",
+    "description": "Evaluate the plan with the employee and record the results. Choose whether a new plan round follows.",
+    "type": "object",
+    "required": [
+      "Evaluation"
+    ],
+    "properties": {
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "oneOf": [
+                    {
+                      "const": "SKILL",
+                      "title": "Skill"
+                    },
+                    {
+                      "const": "KNOWLEDGE",
+                      "title": "Knowledge"
+                    },
+                    {
+                      "const": "BEHAVIOUR",
+                      "title": "Behaviour"
+                    },
+                    {
+                      "const": "CAREER",
+                      "title": "Career"
+                    }
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        },
+        "readOnly": true
+      },
+      "Activities": {
+        "type": "array",
+        "title": "Activities",
+        "readOnly": true,
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "title": "Type",
+              "oneOf": [
+                {
+                  "const": "PROJECT",
+                  "title": "Project"
+                },
+                {
+                  "const": "TRAINING",
+                  "title": "Training"
+                },
+                {
+                  "const": "COACHING",
+                  "title": "Coaching"
+                }
+              ]
+            },
+            "description": {
+              "type": "string",
+              "title": "Activity"
+            },
+            "relatedGoal": {
+              "type": "string",
+              "title": "For goal"
+            },
+            "dueDate": {
+              "type": "string",
+              "title": "Due",
+              "format": "date"
+            },
+            "status": {
+              "type": "string",
+              "title": "Status",
+              "oneOf": [
+                {
+                  "const": "PLANNED",
+                  "title": "Planned"
+                },
+                {
+                  "const": "IN_PROGRESS",
+                  "title": "In progress"
+                },
+                {
+                  "const": "DONE",
+                  "title": "Done"
+                }
+              ]
+            },
+            "outcome": {
+              "type": "string",
+              "title": "Outcome"
+            }
+          }
+        }
+      },
+      "ProgressReviews": {
+        "type": "array",
+        "title": "Earlier reviews",
+        "readOnly": true,
+        "items": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "title": "Review date",
+              "format": "date"
+            },
+            "onTrack": {
+              "type": "boolean",
+              "title": "On track"
+            },
+            "notes": {
+              "type": "string",
+              "title": "Notes"
+            },
+            "adjustments": {
+              "type": "string",
+              "title": "Adjustments to the plan"
+            },
+            "planCompleted": {
+              "type": "boolean",
+              "title": "The plan has been carried out"
+            }
+          }
+        }
+      },
+      "SelfAssessment": {
+        "type": "object",
+        "title": "Self-assessment",
+        "properties": {
+          "goalResults": {
+            "type": "array",
+            "title": "Result per goal",
+            "items": {
+              "type": "object",
+              "properties": {
+                "goalTitle": {
+                  "type": "string",
+                  "title": "Goal",
+                  "readOnly": true
+                },
+                "result": {
+                  "type": "string",
+                  "title": "Result",
+                  "oneOf": [
+                    {
+                      "const": "EXCEEDED",
+                      "title": "Exceeded"
+                    },
+                    {
+                      "const": "MET",
+                      "title": "Met"
+                    },
+                    {
+                      "const": "PARTIALLY_MET",
+                      "title": "Partially met"
+                    },
+                    {
+                      "const": "NOT_MET",
+                      "title": "Not met"
+                    }
+                  ]
+                },
+                "comments": {
+                  "type": "string",
+                  "title": "Comments"
+                }
+              }
+            }
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          }
+        },
+        "readOnly": true
+      },
+      "Evaluation": {
+        "type": "object",
+        "title": "Evaluation",
+        "x-on-complete": "closeRound",
+        "required": [
+          "outcome",
+          "goalResults",
+          "summary"
+        ],
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "title": "Overall outcome",
+            "oneOf": [
+              {
+                "const": "MET",
+                "title": "Met"
+              },
+              {
+                "const": "PARTIALLY_MET",
+                "title": "Partially met"
+              },
+              {
+                "const": "NOT_MET",
+                "title": "Not met"
+              }
+            ]
+          },
+          "goalResults": {
+            "type": "array",
+            "title": "Result per goal",
+            "items": {
+              "type": "object",
+              "properties": {
+                "goalTitle": {
+                  "type": "string",
+                  "title": "Goal",
+                  "readOnly": true
+                },
+                "result": {
+                  "type": "string",
+                  "title": "Result",
+                  "oneOf": [
+                    {
+                      "const": "EXCEEDED",
+                      "title": "Exceeded"
+                    },
+                    {
+                      "const": "MET",
+                      "title": "Met"
+                    },
+                    {
+                      "const": "PARTIALLY_MET",
+                      "title": "Partially met"
+                    },
+                    {
+                      "const": "NOT_MET",
+                      "title": "Not met"
+                    }
+                  ]
+                },
+                "comments": {
+                  "type": "string",
+                  "title": "Comments"
+                }
+              },
+              "required": [
+                "result"
+              ]
+            }
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "furtherDevelopment": {
+            "type": "boolean",
+            "title": "Start a new plan round",
+            "default": false
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Plan",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/period"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/goals",
+            "label": "Goals",
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Activities",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Activities",
+            "label": false,
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Earlier progress reviews",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/ProgressReviews",
+            "label": false,
+            "options": {
+              "table": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Employee's self-assessment",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/SelfAssessment/properties/goalResults",
+            "label": "Result per goal",
+            "options": {
+              "table": true
+            }
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/SelfAssessment/properties/summary",
+            "options": {
+              "multi": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Evaluation",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Evaluation/properties/outcome"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Evaluation/properties/goalResults",
+            "label": "Result per goal",
+            "options": {
+              "table": true,
+              "disableAdd": true,
+              "disableRemove": true
+            }
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Evaluation/properties/summary",
+            "options": {
+              "multi": true
+            }
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Evaluation/properties/furtherDevelopment"
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Save evaluation"
+}</task-model>
+    </cafienne:implementation>
+</humanTask>

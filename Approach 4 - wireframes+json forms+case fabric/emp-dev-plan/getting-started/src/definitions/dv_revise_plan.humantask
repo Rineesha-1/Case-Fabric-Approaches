@@ -1,0 +1,161 @@
+<humanTask xmlns="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:cafienne="org.cafienne">
+    <cafienne:implementation name="RevisePlan" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
+        <documentation textFormat="text/plain">
+            <text><![CDATA[Revise plan. Owner: Employee. ]]></text>
+        </documentation>
+        <input id="i_Approval__revise_plan" name="Approval" typeRef="dv_approval.type"/>
+        <input id="i_Plan__revise_plan" name="Plan" typeRef="dv_plan.type"/>
+        <output id="o_Plan__revise_plan" name="Plan" typeRef="dv_plan.type"/>
+        <task-model>{
+  "schema": {
+    "title": "Revise plan",
+    "description": "Your manager sent the plan back. Change it and send it for approval again.",
+    "type": "object",
+    "required": [
+      "Plan"
+    ],
+    "properties": {
+      "Approval": {
+        "type": "object",
+        "title": "Manager's decision",
+        "readOnly": true,
+        "properties": {
+          "decision": {
+            "type": "string",
+            "title": "Decision",
+            "oneOf": [
+              {
+                "const": "APPROVED",
+                "title": "Approved"
+              },
+              {
+                "const": "REJECTED",
+                "title": "Sent back for changes"
+              }
+            ]
+          },
+          "comments": {
+            "type": "string",
+            "title": "Comments"
+          }
+        }
+      },
+      "Plan": {
+        "type": "object",
+        "title": "Development plan",
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Plan period"
+          },
+          "goals": {
+            "type": "array",
+            "title": "Goals",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Goal"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type",
+                  "oneOf": [
+                    {
+                      "const": "SKILL",
+                      "title": "Skill"
+                    },
+                    {
+                      "const": "KNOWLEDGE",
+                      "title": "Knowledge"
+                    },
+                    {
+                      "const": "BEHAVIOUR",
+                      "title": "Behaviour"
+                    },
+                    {
+                      "const": "CAREER",
+                      "title": "Career"
+                    }
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "successCriteria": {
+                  "type": "string",
+                  "title": "How we know it is achieved"
+                },
+                "targetDate": {
+                  "type": "string",
+                  "title": "Target date",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "title",
+                "type",
+                "successCriteria",
+                "targetDate"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "x-on-complete": "submitPlan",
+        "required": [
+          "period",
+          "goals"
+        ]
+      }
+    }
+  },
+  "uiSchema": {
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "Group",
+        "label": "Manager's decision",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Approval/properties/decision"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Approval/properties/comments",
+            "options": {
+              "multi": true
+            }
+          }
+        ],
+        "options": {
+          "readonly": true
+        }
+      },
+      {
+        "type": "Group",
+        "label": "Plan",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/period"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/Plan/properties/goals",
+            "label": "Goals",
+            "options": {
+              "table": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "submitLabel": "Send for approval"
+}</task-model>
+    </cafienne:implementation>
+</humanTask>
